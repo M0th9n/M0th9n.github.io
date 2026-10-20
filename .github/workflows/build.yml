@@ -1,10 +1,10 @@
 name: Build and Check
 
+# Validation only. Pushes to `main` are built and deployed by deploy.yml.
 on:
-  push:
-    branches: [ main ] # Adjust branches as needed
   pull_request:
     branches: [ main ] # Adjust branches as needed
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
