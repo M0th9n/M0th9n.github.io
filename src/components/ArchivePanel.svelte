@@ -5,8 +5,10 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getPostUrlBySlug } from "../utils/url-utils";
 
-export let tags: string[];
-export let categories: string[];
+// All three are seeded from the URL query string below, so none of them is a
+// required prop — `archive.astro` only passes `sortedPosts`.
+export let tags: string[] = [];
+export let categories: string[] = [];
 export let sortedPosts: Post[] = [];
 
 const params = new URLSearchParams(window.location.search);
@@ -19,7 +21,8 @@ interface Post {
 	data: {
 		title: string;
 		tags: string[];
-		category?: string;
+		// The posts schema allows an explicit `null` category, not just `undefined`.
+		category?: string | null;
 		published: Date;
 	};
 }
