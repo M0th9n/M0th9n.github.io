@@ -1,0 +1,21 @@
+/*
+ * Single stylesheet entry for the plain-CSS files.
+ *
+ * These are combined by `postcss-import` (see postcss.config.mjs) into one file
+ * *before* Tailwind runs, so every file ends up in the same Tailwind pass.
+ * That matters because markdown.css `@apply`s custom classes that main.css
+ * declares (`.link`, `.btn-regular-dark`); when each file is processed as its
+ * own module the registration order is not deterministic and the build fails
+ * intermittently with "The `link` class does not exist".
+ *
+ * main.css must stay first: it declares the `@layer components` classes.
+ *
+ * The Stylus files (variables.styl, markdown-extend.styl) are imported from
+ * Layout.astro instead, because CSS `@import` cannot compile Stylus.
+ */
+@import "./main.css";
+@import "./markdown.css";
+@import "./transition.css";
+@import "./scrollbar.css";
+@import "./expressive-code.css";
+@import "./photoswipe.css";

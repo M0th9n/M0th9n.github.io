@@ -29,9 +29,16 @@ const isPublic = src.startsWith("/");
 // biome-ignore lint/suspicious/noImplicitAnyLet: <check later>
 let img;
 if (isLocal) {
-	const files = import.meta.glob<ImageMetadata>("../../**", {
-		import: "default",
-	});
+	// Only image files may be matched here. A bare "../../**" glob also pulls in
+	// every .css/.styl/.ts file under src/, which drags the whole stylesheet set
+	// into this component's module graph and makes the Tailwind processing order
+	// (and therefore cross-file `@apply`) non-deterministic.
+	const files = import.meta.glob<ImageMetadata>(
+		"../../**/*.{png,jpg,jpeg,jfif,webp,avif,gif,svg,bmp,ico,tiff}",
+		{
+			import: "default",
+		},
+	);
 	let normalizedPath = path
 		.normalize(path.join("../../", basePath, src))
 		.replace(/\\/g, "/");
