@@ -1,9 +1,23 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# 关于
 
-::github{repo="saicaca/fuwari"}
+你好，我是 **M0th9n**。
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+这里是我用来存放二进制安全研究笔记的地方——把分析过程、结论和踩过的坑整理成可以直接复用的报告。
+
+## 这个站点写什么
+
+- **恶意样本分析**：以真实样本为主的静态/动态分析报告，包括样本行为、C2 通信、持久化机制与家族归属判断
+- **漏洞挖掘**：从样本分析延伸到二进制漏洞的成因、利用条件与缓解措施
+- **外挂原理**：不定期分享游戏外挂的实现原理与实际对抗思路
+
+目前的重点在恶意样本，后续会逐步向漏洞挖掘延伸。
+
+## 关于内容
+
+所有分析均在**隔离环境**中进行，样本不会随文章分发。文章中的技术细节仅用于防御研究、安全教学与应急响应参考。
+
+分析难免有疏漏，欢迎在 [GitHub](https://github.com/M0th9n) 上提出讨论——讨论和纠错本身就是更新的动力。
+
+## 站点
+
+本博客基于 [Astro](https://astro.build) 构建，使用 [Fuwari](https://github.com/saicaca/fuwari) 主题。

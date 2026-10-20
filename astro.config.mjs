@@ -26,7 +26,10 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://fuwari.vercel.app/",
+	// Canonical URL of the deployed site. Used for sitemap, RSS and OG tags.
+	// User site (repo named <user>.github.io) is served from the domain root,
+	// so `base` stays "/".
+	site: "https://m0th9n.github.io/",
 	base: "/",
 	trailingSlash: "always",
 	integrations: [
