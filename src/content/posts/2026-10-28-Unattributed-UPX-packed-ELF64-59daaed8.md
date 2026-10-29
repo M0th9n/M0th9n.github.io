@@ -1,0 +1,180 @@
+---
+title: "恶意样本分析：Unattributed UPX-packed ELF64（ELF · elf · 59daaed8）"
+published: 2026-10-28
+draft: false
+description: "恶意（置信度低）：Unattributed UPX-packed ELF64 · loader · 难度 hard · emulation"
+tags: ["恶意样本分析", "Unattributed UPX-packed ELF64", "loader", "ELF"]
+category: "恶意样本日报"
+lang: "zh"
+---
+
+> [!WARNING]
+> **判定：恶意** · 家族 **Unattributed UPX-packed ELF64**（存疑） · 置信度 **低**
+> 
+> 文件为 x86-64 静态 ELF64，在 3 个 program header 之后直接嵌入 UPX 打包头（魔数、校验和、壳大小、版本 14、格式 22 均自洽），主体经高熵化处理（整体熵 7.91，无任何可读函数名、导入、配置或 URL），入口被放在代码段末尾的解压外壳处，属于典型的“加壳自解压载荷”形态。上述结构均由本环境工具直接观测（程序头解析、熵/字符串扫描、隔离环境执行）。“恶意”判定的置信度为中等：样本在投递/采集链路中只保留了前 720,896 字节（声明的代码段长 18,099,827 字节），执行即因入口页越界崩溃，未获得任何真实行为证据。
+
+## 速览
+
+| 项目 | 内容 |
+|:--|:--|
+| 家族 | **Unattributed UPX-packed ELF64** · _存疑_ |
+| 置信度 | **低** |
+| 行为类 | loader |
+| 难度 | hard |
+| 首次出现 | 2026-10-28 11:22:57 |
+| 分析方法 | emulation |
+| 来源 | [MalwareBazaar](https://bazaar.abuse.ch/sample/59daaed89277cc8559ad092982fc942369dc0abc7ec276a45434fbee5e381556/) |
+
+## 攻击链
+
+<svg viewBox="0 0 720 110" width="100%" role="img" aria-label="攻击链概览" xmlns="http://www.w3.org/2000/svg" style="font-family:inherit;font-size:13px;line-height:1.2">
+<defs><marker id="acArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" fill-opacity="0.55"/></marker></defs>
+<circle cx="26" cy="34" r="7" fill="currentColor" fill-opacity="0.55"/>
+<text x="56" y="38" fill="currentColor" font-weight="600" font-size="14">配置解密</text>
+<text x="250" y="38" fill="currentColor" fill-opacity="0.65" font-size="12.5">AES 解密内置配置</text>
+<text x="250" y="56" fill="currentColor" fill-opacity="0.4" font-size="11" font-family="ui-monospace,monospace">T1027</text>
+<text x="613" y="38" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">静态</text>
+</svg>
+
+## 样本标识
+
+| 项目 | 值 |
+|:--|:--|
+| SHA-256 | `59daaed89277cc8559ad092982fc942369dc0abc7ec276a45434fbee5e381556` |
+| MD5 | _未记录_ |
+| 大小 | 720,896 字节（704.0 KB） |
+| 类型 | ELF · `elf` |
+
+## 行为分析
+
+共 **6** 条行为，每条都挂了证据；其中 **5** 条静态可得、**1** 条经动态分析取得。
+
+### 1. 识别 UPX 自解压壳头
+
+`T1027.002` · 置信度 **高** · 静态
+
+3 个 program header 之后（文件偏移 0xEC）直接存放 UPX 打包头：magic 'UPX!'、l_checksum 0x3CD9F8AC、l_lsize 0xAE4(2788) 字节、l_version 14、l_format 22，表明该 ELF 经 UPX 类自解压打包器处理。
+
+> **证据**：偏移 0xEC 处字节 '55 50 58 21'；字符串扫描在偏移 0xEB 命中 '<UPX!'；l_lsize=0xAE4、l_format=0x16
+> 
+> **来源**：`ev-000002` · `ev-000004`
+
+### 2. 清空节表与符号表
+
+`T1027` · 置信度 **高** · 静态
+
+ELF 头 e_shoff=0、e_shnum=0，节表被完全移除；符号表计数为 0，无 main、无导出、无任何可读函数名，常规逆向入口被消除。
+
+> **证据**：结构解析：sections=[]、symbol_count=0、symbols=[]；e_shoff=0/e_shnum=0
+> 
+> **来源**：`ref:97b98749fa` · `ev-000004`
+
+### 3. 静态链接无外部依赖
+
+`T1027` · 置信度 **高** · 静态
+
+文件无 PT_INTERP、无 DT_NEEDED、动态导入计数为 0，可脱离动态链接器直接加载；因此没有可据以判断功能的 libc/系统调用导入面。
+
+> **证据**：结构解析：interp=null、needed=[]、import_count=0
+> 
+> **来源**：`ref:97b98749fa`
+
+### 4. 声明 18MB 代码段
+
+`T1027.002` · 置信度 **高** · 静态
+
+program header 声明 0x400000 起 24,326,946 字节的 RW 段（文件仅 4,096 字节，其余为 BSS）与 0x1B34000 起 18,099,827 字节的 RX 段；入口 0x2C76398 位于 RX 段末尾前 0xADB 字节，恰好落在壳头声明的 2,788 字节外壳区内，说明运行时先解压、再跳入解压后的镜像。
+
+> **证据**：LOAD#1 vaddr=0x1b34000、filesz=memsz=0x1142e73；e_entry=0x2c76398；段尾−入口=0xADB，l_lsize=0xAE4
+> 
+> **来源**：`ev-000004`
+
+### 5. 载荷整体高熵化
+
+`T1140` · 置信度 **高** · 静态
+
+文件主体（0x110 之后）香农熵 7.91，512 字节块熵均值 7.43、最高 7.62，无低熵明文区；对同一段数据的 deflate 再压缩比仅 0.99。LZMA、deflate、bzip2、zstd、LZ4、LZF、Snappy 解码尝试均无有效输出，未恢复出任何明文代码、配置或 C2 字符串。
+
+> **证据**：整体熵 7.91；块熵均值 7.43；再压缩比 0.99；多算法解码无输出；scan_crypto 0 命中
+> 
+> **来源**：`ref:e7f71ac155` · `ev-000005` · `ref:fa8deef8e2`
+
+### 6. 启动即触发 SIGBUS
+
+`N/A` · 置信度 **高** · 动态
+
+在隔离的 Linux 执行环境中，execve 成功后进程立即被内核以 SIGBUS(BUS_ADRERR) 终止，故障地址 0x2C76398 正是 ELF 入口；入口对应文件偏移 18,097,048，而文件只有 720,896 字节，即入口页位于文件末尾之外，壳代码根本无法执行，全流程未产生文件、网络或子进程行为。
+
+> **证据**：动态执行：exit=135，跟踪记录 'SIGBUS si_code=BUS_ADRERR si_addr=0x2c76398'；地址换算：0x2c76398 → off 18,097,048 > 720,896
+> 
+> **来源**：`ev-000003` · `ref:94b20566bf`
+
+
+## IOC（已去武器化）
+
+### 网络
+
+:::note
+**未恢复任何 C2 / 网络 IOC**（原因见文末「分析方法与局限」）。
+:::
+
+### 主机
+
+- **未恢复任何主机 IOC。**
+
+### 配置
+
+| 键 | 值 | 必需 | 证据来源 |
+|:--|:--|:--|:--|
+| `packer` | `UPX 类打包头：magic 'UPX!'，version 14，format 22（Linux ELF64/AMD64），壳大小 2788 字节` | 否 | 静态 |
+| `payload_state` | `不完整：声明的 18,099,827 字节代码段仅存在前 720,896 字节，入口页位于文件末尾之外` | 否 | 静态 |
+
+## 不应误判
+
+:::important
+以下结论**容易被误判**，引用本报告时请注意。
+
+- 不要把样本归为勒索、窃密、挖矿或僵尸网络等具体功能：全流程未观测到任何文件写入、网络连接、进程创建或内存注入行为。
+- 不要声称存在 C2、域名、IP、URL 或内嵌配置：字符串扫描、密码学常量扫描与多种解码尝试均未提取到任何可用内容。
+- 不要把偏移 630447 处出现的 'QO{{}' 当作 flag 或特征串：它只是高熵数据中偶然可打印的 5 字节序列。
+- 不要把“文件无法运行”归因于攻击者的反分析设计：入口页越界、代码段仅存约 4%，更符合投递/采集链路截断，而非有意构造。
+:::
+
+## 分析方法与局限
+
+| 项目 | 内容 |
+|:--|:--|
+| 分析方法 | emulation |
+| 脱壳 | 否 |
+
+**局限与待验证**
+
+1. 样本不完整：program header 声明的 18,099,827 字节 RX 段在文件中只存在前 720,896 字节，压缩数据尾部与解压外壳均缺失，无法脱壳。
+2. 家族与行为类别无法确认：无字符串、无导入、无配置、无动态行为，任何具体功能（窃密/挖矿/远控等）都缺乏证据。
+3. 已用程序头解析、地址换算、熵/块熵分析、多种通用压缩格式解码尝试进行静态恢复，均未成功；不排除载荷使用私有压缩或加密格式。
+4. 打包头可能被伪造或改动（l_checksum 无法离线核对），因此“UPX 打包”只是形态判断，不等于确认具体打包工具与版本。
+5. 样本在入口即崩溃，不能排除其完整形态下具备任意功能；本报告不对未观测到的功能作推断。
+
+## 证据索引
+
+<details>
+<summary>展开 10 条工具证据</summary>
+
+| 证据 ID | 工具 | 摘要 |
+|:--|:--|:--|
+| `ref:6e5dac788a` | 哈希与指纹 | md5 60e5a43bafde0f1bf78ebb3e52100f39 / sha1 07375e95aee7fbeb0a2c616bdcd69710b3216c71 / sha256 与题面一致，大小 720,896 字节 |
+| `ref:97b98749fa` | ELF 结构解析 | ELF64 x86-64 EXEC；interp=null、needed=[]、sections=[]、symbol_count=0、import_count=0；3 个 program header |
+| `ref:a3133b57d3` | elf.sections | 仅 LOAD(RW-) 0x400000 filesz 0x1000/memsz 0x1733322、LOAD(R-X) 0x1b34000 filesz=memsz 0x1142e73、GNU_STACK；无节表 |
+| `ev-000002` | 字符串提取 | 抽取 4,100 条 ASCII 串，偏移 0xEB 命中 '<UPX!'；其余为高熵数据中的随机可打印片段 |
+| `ref:e7f71ac155` | scan.entropy | 整体香农熵 7.91，高于阈值 7.0，无节表可分段 |
+| `ref:fa8deef8e2` | 密码学常量识别 | 密码学常量识别 0 命中（无 AES/SHA/MD5/TEA/CRC/base64 常量） |
+| `ev-000004` | script | 自写脚本解析 program header 与 UPX l_info：入口 0x2c76398、入口文件偏移 18,097,048、文件 720,896 字节；l_lsize=0xAE4、version 14、format 22 |
+| `ev-000005` | script | 自写脚本做熵/块熵/再压缩比统计与 LZMA/deflate/bzip2/zstd/LZ4/LZF/Snappy 解码尝试，均未恢复明文；未发现配置串 |
+| `ref:94b20566bf` | addr.translate | VA 0x2c76398 → 文件偏移 18,097,048（位于 LOAD 段），远超文件大小 720,896 |
+| `ev-000003` | dyn.exec | 隔离 Linux 环境执行：execve 成功，随即 SIGBUS(BUS_ADRERR) 于 0x2c76398，exit=135，无 stdout，网络隔离 |
+
+</details>
+
+---
+
+_本报告样本不公开，IOC 已去武器化，仅供安全研究。_

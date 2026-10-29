@@ -1,0 +1,207 @@
+---
+title: "恶意样本分析：ScreenConnect (ConnectWise RMM 滥用)（other · msi · 87391364）"
+published: 2026-10-28
+draft: false
+description: "恶意（置信度高）：ScreenConnect (ConnectWise RMM 滥用) · rat/backdoor · 难度 medium · 纯静态分析"
+tags: ["恶意样本分析", "ScreenConnect (ConnectWise RMM 滥用)", "rat", "backdoor", "other"]
+category: "恶意样本日报"
+lang: "zh"
+---
+
+> [!WARNING]
+> **判定：恶意** · 家族 **ScreenConnect (ConnectWise RMM 滥用)** · 置信度 **高**
+> 
+> 别名：ConnectWise ScreenConnect、ScreenConnect Client、RMM tool abuse、Remote Monitoring and Management installer abuse
+> 
+> 安装包为 WiX 构建的 ScreenConnect(ConnectWise RMM) 客户端安装器，但安装参数被改写为指向非 ConnectWise 基础设施的中继 74.207.198[.]39:8041，并以 e=Access&y=Guest 的无人值守访客模式常驻，等于在目标机上预置攻击者可控的远程控制通道；该配置在安装包内可直接读取。样本未被执行，未观测实际会话。
+
+## 速览
+
+| 项目 | 内容 |
+|:--|:--|
+| 家族 | **ScreenConnect (ConnectWise RMM 滥用)** · 别名 ConnectWise ScreenConnect、ScreenConnect Client、RMM tool abuse、Remote Monitoring and Management installer abuse |
+| 置信度 | **高** |
+| 行为类 | rat · backdoor |
+| 难度 | medium |
+| 首次出现 | 2026-10-28 12:28:54 |
+| 分析方法 | 纯静态分析 |
+| 来源 | [MalwareBazaar](https://bazaar.abuse.ch/sample/873913643f5428f15e7c9fe178a96056b5aa230f26a6d299d56548aa47e0d47d/) |
+
+## 攻击链
+
+<svg viewBox="0 0 720 110" width="100%" role="img" aria-label="攻击链概览" xmlns="http://www.w3.org/2000/svg" style="font-family:inherit;font-size:13px;line-height:1.2">
+<defs><marker id="acArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" fill-opacity="0.55"/></marker></defs>
+<circle cx="26" cy="34" r="7" fill="currentColor" fill-opacity="0.55"/>
+<text x="56" y="38" fill="currentColor" font-weight="600" font-size="14">连接 C2</text>
+<text x="250" y="38" fill="currentColor" fill-opacity="0.65" font-size="12.5">原始 TCP 到硬编码 C2</text>
+<text x="250" y="56" fill="currentColor" fill-opacity="0.4" font-size="11" font-family="ui-monospace,monospace">T1095</text>
+<text x="613" y="38" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">静态</text>
+</svg>
+
+## 样本标识
+
+| 项目 | 值 |
+|:--|:--|
+| SHA-256 | `873913643f5428f15e7c9fe178a96056b5aa230f26a6d299d56548aa47e0d47d` |
+| MD5 | _未记录_ |
+| 大小 | 13,508,608 字节（12.9 MB） |
+| 类型 | other · `msi` |
+
+## 行为分析
+
+共 **7** 条行为，每条都挂了证据，且全部静态可得。
+
+### 1. 植入远控客户端
+
+`T1219` · 置信度 **高** · 静态
+
+安装包内嵌 CAB 携带完整 ScreenConnect 客户端组件（ClientService、WindowsClient、WindowsFileManager、WindowsBackstageShell、凭据提供程序），安装后以 ScreenConnect Client (0efe8120e060119a) 25.2.4.9229 形式落地。
+
+> **证据**：MSI 文件表字符串与内嵌 CAB 目录：ScreenConnect.ClientService.dll / ScreenConnect.WindowsClient.exe / ScreenConnect.WindowsBackstageShell.exe；版本串 25.2.4.9229 (off 0x2e5a95)
+> 
+> **来源**：`ref:088d11da5d` · `ref:2cd14b3b11`
+
+### 2. 预置攻击者中继
+
+`T1071.001` · 置信度 **高** · 静态
+
+SERVICE_CLIENT_LAUNCH_PARAMETERS 属性值为 ?e=Access&y=Guest&h=74.207.198[.]39&p=8041&k=<relay_key>，客户端服务启动即按此参数注册到该中继，形成指向非厂商基础设施的外联通道。
+
+> **证据**：MSI 偏移 0x2e77ac 处字符串 SERVICE_CLIENT_LAUNCH_PARAMETERS?e=Access&y=Guest&h=74.207.198[.]39&p=8041&k=BgIAAACkAABSU0Ex...
+> 
+> **来源**：`ref:fef539ab76`
+
+### 3. 写入无人值守会话
+
+`T1219` · 置信度 **高** · 静态
+
+参数 e=Access&y=Guest 使客户端以访客(unattended)模式常驻：无需终端用户确认即接受远程会话，操作者获得交互式桌面控制能力。
+
+> **证据**：同一启动参数中的 e=Access 与 y=Guest 键值 (off 0x2e7785 起)
+> 
+> **来源**：`ref:fef539ab76`
+
+### 4. 锁定中继防篡改
+
+`T1219` · 置信度 **高** · 静态
+
+内嵌 ScreenConnect.ClientService.exe.config 写入 ClientLaunchParametersConstraint，强制约束 h/p/k 三个键，用户或第三方修改连接参数时仍被拉回同一中继。
+
+> **证据**：app.config: <setting name="ClientLaunchParametersConstraint"> <value>?h=74.207.198[.]39&amp;p=8041&amp;k=... (off 0xcd5b8c 附近)
+> 
+> **来源**：`ref:fef539ab76`
+
+### 5. 注册系统服务常驻
+
+`T1543.003` · 置信度 **中** · 静态
+
+MSI 含 ServiceInstall 表与 WiX ServiceConfig 自定义动作（SchedServiceConfig/ExecServiceConfig/ServiceConfigRollback），安装后注册并配置服务失败自动重启，运行上下文为 LocalSystem，实现开机自启与 SYSTEM 级远程操作。
+
+> **证据**：字符串 LocalSystem、ServiceInstall 表访问 SQL、SchedServiceConfig/ExecServiceConfig 自定义动作名（off 0x2e5a00 区段）
+> 
+> **来源**：`ref:9faa156a7a` · `ref:1038a27146`
+
+### 6. 安装凭据提供程序
+
+`T1556` · 置信度 **中** · 静态
+
+落地 ScreenConnect.WindowsCredentialProvider.dll 与 ScreenConnect.WindowsAuthenticationPackage.dll，并向系统注册登录凭据提供程序与认证包，用于远程会话的后台登录/切换用户。
+
+> **证据**：CAB 目录字符串 ScreenConnect.WindowsCredentialProvider.dll / ScreenConnect.WindowsAuthenticationPackage.dll；MSI 属性 CREDENTIAL_PROVIDER_CLASS_ID {6FF59A85-BC37-4CD4-C0DB-D023F54CB1AC}
+> 
+> **来源**：`ref:088d11da5d`
+
+### 7. 结束既有客户端进程
+
+`T1489` · 置信度 **高** · 静态
+
+安装期自定义动作 DLL（导出库名 SfxCA.dll，132 个导出）暴露 TerminateProcesses / FixupServiceArguments，安装或升级时强制终止已在运行的客户端进程并改写服务启动参数，避免旧实例干扰。
+
+> **证据**：导出表 ordinal 127 FixupServiceArguments @ rva 0x3a99、ordinal 128 TerminateProcesses @ rva 0x3aaf；导出库名 SfxCA.dll
+> 
+> **来源**：`ref:b4610cde29` · `ref:55bc43d6e9`
+
+
+## IOC（已去武器化）
+
+### 网络
+
+:::caution
+**真实服务器侧仍未验证**：上述连接/握手是与本地受控 受控仿真服务 完成的，真实 C2 的响应与下发内容仍未知。
+:::
+
+| 类型 | 值 | 端口 | 角色 | 证据来源 | 动态观测 |
+|:--|:--|--:|:--|:--|:--|
+| tcp | `74.207.198[.]39` | 8041 | c2 | 静态 | ⏳ 未观测 |
+
+### 主机
+
+**落地路径**
+
+- `%ProgramFiles(x86)%\ScreenConnect Client (0efe8120e060119a)\`
+- `%ProgramFiles(x86)%\ScreenConnect Client (0efe8120e060119a)\ScreenConnect.ClientService.exe`
+
+**服务**
+
+- `ScreenConnect Client (0efe8120e060119a)`
+
+### 配置
+
+| 键 | 值 | 必需 | 证据来源 |
+|:--|:--|:--|:--|
+| `c2_hosts` | `74.207.198[.]39` | 是 | 静态 |
+| `c2_port` | `8041` | 是 | 静态 |
+| `relay_key` | `BgIAAACkAABSU0ExAAgAAAEAAQDBh%2fu3NsYYWsJgzt%2brHqBjqj1P4HN052wkOVo3VKFtdnCrSbSMd6j2j2o8nY5%2fmZYcPUz0wRJ55soF8LlUVzHaDLGRjt3nsdSXVgLXFwi3Azal6R8sMZUdSWejxq3siydod7bGGXilJnnBuRPkYg%2fYUWVPu3zTaQ0tpTJTMhUSvZc6YVQUtzs3I8UN2Tsh2Ebw6X0wY%2bgqU054KTAYKjpnYGvlIkaoeFMOMUbC5ee8bPs0rekf8Lr1Hww1%2fM9yxFg%2baiRo7LGjHRjW6%2fwfdJKcVwGFbcCULJSmRIZ3ajFqg%2fctYyr9CFSZ4ISc` | 是 | 静态 |
+| `launch_mode` | `?e=Access&y=Guest (unattended guest access)` | 是 | 静态 |
+| `instance_id` | `0efe8120e060119a` | 是 | 静态 |
+| `client_version` | `25.2.4.9229` | 否 | 静态 |
+| `product_code` | `{B292C5EA-BF5F-4280-B056-1670FB10BB1D}` | 否 | 静态 |
+| `install_path` | `%ProgramFiles(x86)%\ScreenConnect Client (0efe8120e060119a)\ (由 ProgramFilesFolder + 产品名推导)` | 否 | 静态 |
+| `param_lock` | `app.config ClientLaunchParametersConstraint = ?h=74.207.198[.]39&p=8041&k=<relay_key>` | 是 | 静态 |
+
+## 不应误判
+
+:::important
+以下结论**容易被误判**，引用本报告时请注意。
+
+- 不得判为勒索软件/窃密木马本体：包内只有远程控制组件与安装逻辑，未见文件加密、数据收集或凭据窃取代码。
+- 不得因存在 CustomAction、rundll32 调用与 WiX 结构就判为加载器或投毒安装包：这些是 ScreenConnect 官方安装器的标准组成，自定义动作仅用于结束进程与配置服务。
+- 不得声称已观测到与 74.207.198[.]39 的实际会话或流量：本次为纯静态分析，样本未被执行，也未联网。
+- 不得把 ConnectWise/ScreenConnect 品牌本身判为恶意：产品是合法商用 RMM 工具，恶意性来自指向非厂商基础设施的中继与无人值守访客模式。
+:::
+
+## 分析方法与局限
+
+| 项目 | 内容 |
+|:--|:--|
+| 分析方法 | 纯静态分析 |
+| 脱壳 | 否 |
+
+**局限与待验证**
+
+1. 本次为纯静态档位，MSI 未经执行；服务注册、注册表写入与实际网络会话均未观测，故 c2 与 host_ioc 标 recoverability=static 且 pending_dynamic_verify=true。
+2. 安装目录与服务名由 MSI 属性(ProgramFilesFolder、产品名、SERVICE_NAME 占位符)推导，实际落地路径随目标系统位数与属性覆盖而变。
+3. 未从 CAB 中逐个析出 .NET 组件做独立哈希与版本核对，版本号取自 MSI 文件表字符串(25.2.4.9229)。
+4. 内嵌客户端 PE 的 SECURITY 数据目录为空(无 Authenticode 签名)，无法通过签名归属确认真实构建来源。
+5. 中继密钥为 ScreenConnect 会话鉴权用安全密钥，不能据此还原攻击者身份或中继归属。
+
+## 证据索引
+
+<details>
+<summary>展开 7 条工具证据</summary>
+
+| 证据 ID | 工具 | 摘要 |
+|:--|:--|:--|
+| `ref:fef539ab76` | script.extract | 从 MSI 原始字节提取 SERVICE_CLIENT_LAUNCH_PARAMETERS 与 app.config 约束，得到 h/p/k 与 e=Access&y=Guest |
+| `ref:088d11da5d` | 字符串提取 | MSI 字符串抽取：ScreenConnect.*.dll/exe 组件清单、WiX 自定义动作库与属性串 |
+| `ref:2cd14b3b11` | 样本分诊 | 内嵌 PE 流分诊：无加壳迹象，.text 熵 6.478，导出 132 个 |
+| `ref:55bc43d6e9` | PE 结构解析 | SfxCA.dll 结构：I386 DLL，132 导出，SECURITY 目录为 0（无签名） |
+| `ref:b4610cde29` | pe.exports | 导出 FixupServiceArguments / TerminateProcesses / zzzzInvokeManagedCustomActionOutOfProcW |
+| `ref:1038a27146` | 导入表解析 | CustomAction 宿主导入 msi.dll、ADVAPI32(服务/注册表)、SHELL32 ShellExecuteW、KERNEL32 CreateProcessW |
+| `ref:9faa156a7a` | 字符串提取 | LocalSystem、ServiceInstall 表访问、SchedServiceConfig/ExecServiceConfig 等服务配置证据 |
+
+</details>
+
+---
+
+_本报告样本不公开，IOC 已去武器化，仅供安全研究。_
