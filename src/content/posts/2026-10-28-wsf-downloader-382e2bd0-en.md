@@ -30,24 +30,29 @@ translationOf: "2026-10-28-wsf-downloader-382e2bd0"
 
 ## Attack chain
 
-<svg viewBox="0 0 720 226" width="100%" role="img" aria-label="Attack chain overview" xmlns="http://www.w3.org/2000/svg" style="font-family:inherit;font-size:13px;line-height:1.2">
+<svg viewBox="0 0 720 302" width="100%" role="img" aria-label="Attack chain overview" xmlns="http://www.w3.org/2000/svg" style="font-family:inherit;font-size:13px;line-height:1.2">
 <defs><marker id="acArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" fill-opacity="0.55"/></marker></defs>
-<line x1="26" y1="34" x2="26" y2="150" stroke="currentColor" stroke-opacity="0.22" stroke-width="2"/>
+<line x1="26" y1="34" x2="26" y2="234" stroke="currentColor" stroke-opacity="0.22" stroke-width="2"/>
 <circle cx="26" cy="34" r="7" fill="currentColor" fill-opacity="0.55"/>
-<text x="56" y="38" fill="currentColor" font-weight="600" font-size="14">Anti-analysis</text>
-<text x="250" y="38" fill="currentColor" fill-opacity="0.65" font-size="12.5">Anti-VM / anti-debug / kill AV</text>
-<text x="250" y="56" fill="currentColor" fill-opacity="0.4" font-size="11" font-family="ui-monospace,monospace">T1497</text>
+<text x="56" y="39" fill="currentColor" font-weight="600" font-size="13.5">Fetch the PS1 payload from a fixed URL</text>
+<text x="470" y="39" fill="currentColor" fill-opacity="0.45" font-size="11" font-family="ui-monospace,monospace">T1105</text>
 <text x="613" y="38" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
-<circle cx="26" cy="92" r="7" fill="currentColor" fill-opacity="0.55"/>
-<text x="56" y="96" fill="currentColor" font-weight="600" font-size="14">Disguised drop</text>
-<text x="250" y="96" fill="currentColor" fill-opacity="0.65" font-size="12.5">Copy to %LocalAppData%</text>
-<text x="250" y="114" fill="currentColor" fill-opacity="0.4" font-size="11" font-family="ui-monospace,monospace">T1036</text>
-<text x="613" y="96" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
-<circle cx="26" cy="150" r="7" fill="currentColor" fill-opacity="0.55"/>
-<text x="56" y="154" fill="currentColor" font-weight="600" font-size="14">Remote control / theft</text>
-<text x="250" y="154" fill="currentColor" fill-opacity="0.65" font-size="12.5">shell / keylogging / screenshots / webcam</text>
-<text x="250" y="172" fill="currentColor" fill-opacity="0.4" font-size="11" font-family="ui-monospace,monospace">T1059</text>
-<text x="613" y="154" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
+<circle cx="26" cy="84" r="7" fill="currentColor" fill-opacity="0.55"/>
+<text x="56" y="89" fill="currentColor" font-weight="600" font-size="13.5">Create the C:\Temp staging directory</text>
+<text x="470" y="89" fill="currentColor" fill-opacity="0.45" font-size="11" font-family="ui-monospace,monospace">T1074</text>
+<text x="613" y="88" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
+<circle cx="26" cy="134" r="7" fill="currentColor" fill-opacity="0.55"/>
+<text x="56" y="139" fill="currentColor" font-weight="600" font-size="13.5">Write the script file under a random name</text>
+<text x="470" y="139" fill="currentColor" fill-opacity="0.45" font-size="11" font-family="ui-monospace,monospace">T1036</text>
+<text x="613" y="138" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
+<circle cx="26" cy="184" r="7" fill="currentColor" fill-opacity="0.55"/>
+<text x="56" y="189" fill="currentColor" font-weight="600" font-size="13.5">Launch PowerShell in a hidden window</text>
+<text x="470" y="189" fill="currentColor" fill-opacity="0.45" font-size="11" font-family="ui-monospace,monospace">T1059.001</text>
+<text x="613" y="188" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
+<circle cx="26" cy="234" r="7" fill="currentColor" fill-opacity="0.55"/>
+<text x="56" y="239" fill="currentColor" font-weight="600" font-size="13.5">Bypass the execution policy and profile</text>
+<text x="470" y="239" fill="currentColor" fill-opacity="0.45" font-size="11" font-family="ui-monospace,monospace">T1562.001</text>
+<text x="613" y="238" fill="currentColor" fill-opacity="0.45" font-size="11.5" text-anchor="middle">static</text>
 </svg>
 
 ## Sample identity
