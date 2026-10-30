@@ -2,9 +2,11 @@
 
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
+import { Icon } from "astro-icon/components";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { url } from "../utils/url-utils";
 
 const aboutPost = await getEntry("spec", "about");
 
@@ -14,9 +16,16 @@ if (!aboutPost) {
 
 const { Content } = await render(aboutPost);
 ---
-<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} lang="zh">
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <div class="flex justify-end mb-3">
+                <a href={url("/about/en/")} hreflang="en" title="Read this page in English"
+                   class="btn-regular rounded-lg h-8 px-3 flex items-center gap-1.5 text-sm font-medium active:scale-95">
+                    <Icon name="material-symbols:translate" class="text-[1.125rem]" />
+                    <span>English</span>
+                </a>
+            </div>
             <Markdown class="mt-2">
                 <Content />
             </Markdown>

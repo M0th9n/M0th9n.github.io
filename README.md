@@ -1,27 +1,29 @@
-## 🚀 **[点击访问我的网站](https://M0th9n.github.io/)**
+[中文](README.zh-CN.md) | **English**
 
-## 👋 关于我
+## 🚀 **[Visit my site](https://m0th9n.github.io/)**
 
-你好，我是 M0th9n🐹。
+## 👋 About me
 
-## 📖 关于这个网站
+Hi, I'm M0th9n 🐹.
 
-这个网站是我用来分享最新二进制安全成果的地方。
+## 📖 About this site
 
-## 📄 一些设想
+This is where I share my latest work in binary security.
 
-利用已有资源、知识做展示面——报告
+## 📄 What I'm going for
 
-目前以恶意样本为主，后期延伸至漏洞挖掘
+Turning the resources and knowledge I already have into something worth showing — reports.
 
-不定期分享外挂原理与实际应用
+Malware samples for now, with vulnerability research to follow.
 
-我更新的动力来自克服困难的欲望和你们的讨论
+From time to time I also write about game cheats: how they work and how they're built.
 
-## 🛠️ 技术栈
+What keeps me updating is the urge to work through hard problems, and the discussions with you.
 
-这个网站是基于以下技术构建的：
+## 🛠️ Stack
 
-* **框架**: [Astro](https://astro.build)
-* **模板**: [Fuwari](https://github.com/saicaca/fuwari)
-* **README**：[P19E99](https://github.com/P19E99)（感谢好兄弟P19E99🐷）
+This site is built with:
+
+* **Framework**: [Astro](https://astro.build)
+* **Theme**: [Fuwari](https://github.com/saicaca/fuwari)
+* **README**: [P19E99](https://github.com/P19E99) (thanks, buddy 🐷)
