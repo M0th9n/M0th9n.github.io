@@ -1,7 +1,7 @@
 ---
 title: "Malware Analysis: macOS AppleScript stealer loader (candidate) (other · zsh · 93e784fd)"
 published: 2026-10-29
-draft: true
+draft: false
 description: "Malicious (low confidence): macOS AppleScript stealer loader (candidate) · stealer/loader/downloader · difficulty easy · pure static analysis"
 tags: ["stealer", "loader", "downloader", "Script"]
 category: "恶意样本日报"

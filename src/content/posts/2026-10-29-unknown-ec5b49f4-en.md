@@ -1,7 +1,7 @@
 ---
 title: "Malware Analysis: unknown (PE · exe · ec5b49f4)"
 published: 2026-10-29
-draft: true
+draft: false
 description: "Malicious (low confidence): unknown · loader · difficulty hard · dynamic sandbox + static decompilation"
 tags: ["loader", "PE"]
 category: "恶意样本日报"

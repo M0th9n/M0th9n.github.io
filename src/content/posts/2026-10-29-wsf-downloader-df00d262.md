@@ -1,7 +1,7 @@
 ---
 title: "恶意样本分析：WSF PowerShell Downloader（other · wsf · df00d262）"
 published: 2026-10-29
-draft: true
+draft: false
 description: "恶意（置信度低）：WSF PowerShell Downloader · downloader/dropper/loader · 难度 easy · 纯静态分析"
 tags: ["downloader", "dropper", "loader", "Script"]
 category: "恶意样本日报"

@@ -1,7 +1,7 @@
 ---
 title: "Malware Analysis: WSF PowerShell Downloader (other · wsf · df00d262)"
 published: 2026-10-29
-draft: true
+draft: false
 description: "Malicious (low confidence): WSF PowerShell Downloader · downloader/dropper/loader · difficulty easy · static analysis only"
 tags: ["downloader", "dropper", "loader", "Script"]
 category: "恶意样本日报"

@@ -1,7 +1,7 @@
 ---
 title: "恶意样本分析：macOS AppleScript 窃密加载器(候选)（other · zsh · 93e784fd）"
 published: 2026-10-29
-draft: true
+draft: false
 description: "恶意（置信度低）：macOS AppleScript 窃密加载器(候选) · stealer/loader/downloader · 难度 easy · 纯静态分析"
 tags: ["stealer", "loader", "downloader", "Script"]
 category: "恶意样本日报"
