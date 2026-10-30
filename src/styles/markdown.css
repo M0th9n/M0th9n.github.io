@@ -117,5 +117,40 @@
         overflow-x: auto;
         margin: 1em 0;
     }
-    
+
+    /* ---- Wide content ----------------------------------------------------
+       Tables and the generated attack-chain <svg> diagrams are wrapped in
+       `.content-scroll` by src/plugins/rehype-content-wrappers.mjs. They scroll
+       sideways instead of forcing the whole article column wider. */
+    .content-scroll {
+        @apply my-5 overflow-x-auto rounded-lg border border-[var(--line-divider)];
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-scroll table {
+        @apply my-0 border-0;
+    }
+
+    .table-scroll thead th {
+        @apply whitespace-nowrap;
+    }
+
+    /* The diagrams are authored at 720px wide; below that the labels stop being
+       readable, so keep a floor and let the reader scroll. */
+    .svg-scroll {
+        @apply border-0;
+    }
+
+    .svg-scroll svg {
+        display: block;
+        min-width: 40rem;
+    }
+
+    /* Evidence blocks (`> **证据**：…`) are repeated for every behaviour, so give
+       them a little more room than a plain quote. */
+    blockquote {
+        @apply my-3;
+    }
+
 }
