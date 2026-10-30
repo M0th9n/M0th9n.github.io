@@ -3,18 +3,36 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import { getCategoryUrl } from "@utils/url-utils.ts";
 
+/**
+ * A post carrying `translationOf` is an alternate language version of another post.
+ * Translations get their own route but must stay out of listings, archives, tag and
+ * category counts and the RSS feed, otherwise every report is listed twice.
+ */
+export function isTranslation(entry: CollectionEntry<"posts">) {
+	return !!entry.data.translationOf;
+}
+
 // // Retrieve posts and sort them by publication date
-async function getRawSortedPosts() {
+async function getRawSortedPosts(includeTranslations = false) {
 	const allBlogPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 
-	const sorted = allBlogPosts.sort((a, b) => {
+	const visible = includeTranslations
+		? allBlogPosts
+		: allBlogPosts.filter((entry) => !isTranslation(entry));
+
+	const sorted = visible.sort((a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) => {
 		const dateA = new Date(a.data.published);
 		const dateB = new Date(b.data.published);
 		return dateA > dateB ? -1 : 1;
 	});
 	return sorted;
+}
+
+/** Every publishable post, translations included. Used for route generation. */
+export async function getAllSortedPosts() {
+	return getRawSortedPosts(true);
 }
 
 export async function getSortedPosts() {
@@ -55,9 +73,10 @@ export async function getTagList(): Promise<Tag[]> {
 	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
+	const listedPosts = allBlogPosts.filter((entry) => !isTranslation(entry));
 
 	const countMap: { [key: string]: number } = {};
-	allBlogPosts.forEach((post: { data: { tags: string[] } }) => {
+	listedPosts.forEach((post: { data: { tags: string[] } }) => {
 		post.data.tags.forEach((tag: string) => {
 			if (!countMap[tag]) countMap[tag] = 0;
 			countMap[tag]++;
@@ -82,8 +101,9 @@ export async function getCategoryList(): Promise<Category[]> {
 	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
+	const listedPosts = allBlogPosts.filter((entry) => !isTranslation(entry));
 	const count: { [key: string]: number } = {};
-	allBlogPosts.forEach((post: { data: { category: string | null } }) => {
+	listedPosts.forEach((post: { data: { category: string | null } }) => {
 		if (!post.data.category) {
 			const ucKey = i18n(I18nKey.uncategorized);
 			count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1;

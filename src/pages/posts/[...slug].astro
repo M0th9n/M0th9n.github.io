@@ -5,7 +5,7 @@ import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSortedPosts } from "@utils/content-utils";
+import { getAllSortedPosts } from "@utils/content-utils";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
@@ -15,14 +15,37 @@ import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 
 export async function getStaticPaths() {
-	const blogEntries = await getSortedPosts();
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+	// Includes translations: they are not listed anywhere, but they still need a route.
+	const blogEntries = await getAllSortedPosts();
+	const bySlug = new Map(blogEntries.map((entry) => [entry.slug, entry]));
+
+	return blogEntries.map((entry) => {
+		// A translation points at its original via `translationOf`; the original finds
+		// its translations by looking for entries that point back at it.
+		const counterpart = entry.data.translationOf
+			? bySlug.get(entry.data.translationOf)
+			: blogEntries.find((other) => other.data.translationOf === entry.slug);
+
+		return {
+			params: { slug: entry.slug },
+			props: { entry, counterpart },
+		};
+	});
 }
 
-const { entry } = Astro.props;
+const { entry, counterpart } = Astro.props;
+
+function languageInfo(lang: string | undefined) {
+	const code = (lang ?? "").toLowerCase();
+	if (code.startsWith("zh")) return { label: "中文", name: "Chinese" };
+	if (code.startsWith("en")) return { label: "English", name: "English" };
+	if (code.startsWith("ja")) return { label: "日本語", name: "Japanese" };
+	return { label: code.toUpperCase() || "EN", name: code.toUpperCase() || "English" };
+}
+
+const counterpartLanguage = counterpart
+	? languageInfo(counterpart.data.lang)
+	: undefined;
 const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
@@ -51,22 +74,33 @@ const jsonLd = {
         <div id="post-container" class:list={["card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full ",
             {}
         ]}>
-            <!-- word count and reading time -->
-            <div class="flex flex-row text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation">
-                <div class="flex flex-row items-center">
-                    <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
-                        <Icon name="material-symbols:notes-rounded"></Icon>
+            <!-- word count, reading time, and the language switch when a translation exists -->
+            <div class="flex flex-row justify-between items-center text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation">
+                <div class="flex flex-row gap-5">
+                    <div class="flex flex-row items-center">
+                        <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
+                            <Icon name="material-symbols:notes-rounded"></Icon>
+                        </div>
+                        <div class="text-sm">{remarkPluginFrontmatter.words} {" " + i18n(I18nKey.wordsCount)}</div>
                     </div>
-                    <div class="text-sm">{remarkPluginFrontmatter.words} {" " + i18n(I18nKey.wordsCount)}</div>
+                    <div class="flex flex-row items-center">
+                        <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
+                            <Icon name="material-symbols:schedule-outline-rounded"></Icon>
+                        </div>
+                        <div class="text-sm">
+                            {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-row items-center">
-                    <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
-                        <Icon name="material-symbols:schedule-outline-rounded"></Icon>
-                    </div>
-                    <div class="text-sm">
-                        {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
-                    </div>
-                </div>
+                {counterpart && counterpartLanguage && (
+                    <a href={getPostUrlBySlug(counterpart.slug)}
+                       hreflang={counterpart.data.lang || undefined}
+                       title={`Switch to the ${counterpartLanguage.name} version`}
+                       class="btn-plain scale-animation rounded-lg h-8 px-2.5 flex items-center gap-1.5 !text-black/60 dark:!text-white/60 hover:!text-[var(--primary)] text-sm font-medium">
+                        <Icon name="material-symbols:translate" class="text-[1.125rem]" />
+                        <span>{counterpartLanguage.label}</span>
+                    </a>
+                )}
             </div>
 
             <!-- title -->
