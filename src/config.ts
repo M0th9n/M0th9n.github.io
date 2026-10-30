@@ -12,7 +12,9 @@ export const siteConfig: SiteConfig = {
 	subtitle: "二进制安全研究",
 	lang: "en", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
-		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+		// 200 = 冷青。与图里表示「动态观测」的玫红（#e11d48）区分开，
+		// 又比默认的 250 蓝紫更接近终端/安全研究的视觉习惯。
+		hue: 200, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
 	},
 	banner: {

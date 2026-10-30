@@ -3,7 +3,9 @@ export const PAGE_SIZE = 8;
 export const LIGHT_MODE = "light",
 	DARK_MODE = "dark",
 	AUTO_MODE = "auto";
-export const DEFAULT_THEME = AUTO_MODE;
+// 站点以长篇样本分析为主，深色更适合长时间阅读，也和代码块/图表一致。
+// 访客仍可用导航栏的开关切回亮色。
+export const DEFAULT_THEME = DARK_MODE;
 
 // Banner height unit: vh
 export const BANNER_HEIGHT = 35;
