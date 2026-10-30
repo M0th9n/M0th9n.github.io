@@ -3,7 +3,7 @@ title: "恶意样本分析：Linux DHT-P2P botnet (B1txor20/Pink/Fodcha 谱系�
 published: 2026-10-28
 draft: false
 description: "恶意（置信度低）：Linux DHT-P2P botnet (B1txor20/Pink/Fodcha 谱系候选) · botnet/backdoor · 难度 medium · emulation"
-tags: ["恶意样本分析", "Linux DHT-P2P botnet (B1txor20/Pink/Fodcha 谱系候选)", "botnet", "backdoor", "ELF"]
+tags: ["botnet", "backdoor", "ELF"]
 category: "恶意样本日报"
 lang: "zh"
 ---

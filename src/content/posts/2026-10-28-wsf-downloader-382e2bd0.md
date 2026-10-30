@@ -3,7 +3,7 @@ title: "恶意样本分析：WSF PowerShell Downloader (commodity)（other · ws
 published: 2026-10-28
 draft: false
 description: "恶意（置信度低）：WSF PowerShell Downloader (commodity) · downloader/loader/dropper · 难度 easy · 纯静态分析"
-tags: ["恶意样本分析", "WSF PowerShell Downloader (commodity)", "downloader", "loader", "dropper", "other"]
+tags: ["downloader", "loader", "dropper", "Script"]
 category: "恶意样本日报"
 lang: "zh"
 ---

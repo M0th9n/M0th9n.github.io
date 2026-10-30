@@ -3,7 +3,7 @@ title: "恶意样本分析：Unknown macOS downloader (paste-and-run / ClickFix 
 published: 2026-10-28
 draft: false
 description: "恶意（置信度低）：Unknown macOS downloader (paste-and-run / ClickFix delivery) · loader/downloader · 难度 medium · 纯静态分析"
-tags: ["恶意样本分析", "Unknown macOS downloader (paste-and-run / ClickFix delivery)", "loader", "downloader", "other"]
+tags: ["loader", "downloader", "Script"]
 category: "恶意样本日报"
 lang: "zh"
 ---

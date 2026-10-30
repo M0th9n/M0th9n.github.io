@@ -3,7 +3,7 @@ title: "恶意样本分析：Unattributed NSIS downloader（PE · exe · 85c35b2
 published: 2026-10-28
 draft: false
 description: "恶意（置信度低）：Unattributed NSIS downloader · downloader/dropper · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["恶意样本分析", "Unattributed NSIS downloader", "downloader", "dropper", "PE"]
+tags: ["downloader", "dropper", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---
@@ -149,9 +149,17 @@ NSIS 包内 5 个“数据文件”合计约 1.4 MB，其中 4 个为单一字�
 
 ### 网络
 
+:::note
+**已动态观测到连接**：样本实际向该目标发起 TCP 连接（短时间内多次重试）。
+:::
+
+:::caution
+**真实服务器侧仍未验证**：上述连接/握手是与本地受控 受控仿真服务 完成的，真实 C2 的响应与下发内容仍未知。
+:::
+
 | 类型 | 值 | 端口 | 角色 | 证据来源 | 动态观测 |
 |:--|:--|--:|:--|:--|:--|
-| http | `hxxps://x0[.]at/Kp7v.bin` | 443 | download | 动态 | — |
+| http | `hxxps://x0[.]at/Kp7v.bin` | 443 | download | 动态 | 已观测 |
 
 ### 主机
 
@@ -198,7 +206,7 @@ NSIS 包内 5 个“数据文件”合计约 1.4 MB，其中 4 个为单一字�
 ## 证据索引
 
 <details>
-<summary>展开 14 条工具证据</summary>
+<summary>展开 15 条工具证据</summary>
 
 | 证据 ID | 工具 | 摘要 |
 |:--|:--|:--|
@@ -216,6 +224,7 @@ NSIS 包内 5 个“数据文件”合计约 1.4 MB，其中 4 个为单一字�
 | `ref:aba1498190` | memory forensics | process minidump: UTF-16 install path under %APPDATA%\Microsoft\Windows\Templates\...\upknit |
 | `ref:dd10aae79a` | module scan | 65 modules in sample process; 1 modified (ntdll patch), 0 injected PE/shellcode |
 | `ref:512e1b78e5` | process enumeration | only sample pid 6064 alive; svchost/监控组件/system otherwise; no spawned child |
+| `c2_evidence:85c35b2d` | 连接证据提取 | 动态网络监控记录到 14 次到 x0[.]at:443 的连接尝试；未捕获完整会话 |
 
 </details>
 
