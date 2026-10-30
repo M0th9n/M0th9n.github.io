@@ -3,7 +3,7 @@ title: "恶意样本分析：Linux/ARM DoH-Tunnel Backdoor (unattributed)（ELF 
 published: 2026-10-29
 draft: false
 description: "恶意（置信度低）：Linux/ARM DoH-Tunnel Backdoor (unattributed) · backdoor/implant · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["Linux", "backdoor", "implant", "ELF"]
+tags: ["backdoor", "implant", "ELF"]
 category: "恶意样本日报"
 lang: "zh"
 ---

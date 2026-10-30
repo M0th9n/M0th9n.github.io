@@ -3,7 +3,7 @@ title: "Malware Analysis: Linux/ARM DoH-Tunnel Backdoor (unattributed) (ELF · e
 published: 2026-10-29
 draft: false
 description: "Malicious (low confidence): Linux/ARM DoH-Tunnel Backdoor (unattributed) · backdoor/implant · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Linux", "backdoor", "implant", "ELF"]
+tags: ["backdoor", "implant", "ELF"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-29-Linux-ARM-DoH-Tunnel-Backdoor-unattributed-ffa6a217"
