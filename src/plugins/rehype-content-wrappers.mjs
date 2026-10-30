@@ -20,7 +20,8 @@ export function rehypeContentWrappers() {
 
 			// Don't wrap twice if this ever runs over already-processed output.
 			const className = parent.properties?.className;
-			if (Array.isArray(className) && className.includes("content-scroll")) return;
+			if (Array.isArray(className) && className.includes("content-scroll"))
+				return;
 
 			parent.children[index] = {
 				type: "element",

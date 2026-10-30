@@ -40,7 +40,10 @@ function languageInfo(lang: string | undefined) {
 	if (code.startsWith("zh")) return { label: "中文", name: "Chinese" };
 	if (code.startsWith("en")) return { label: "English", name: "English" };
 	if (code.startsWith("ja")) return { label: "日本語", name: "Japanese" };
-	return { label: code.toUpperCase() || "EN", name: code.toUpperCase() || "English" };
+	return {
+		label: code.toUpperCase() || "EN",
+		name: code.toUpperCase() || "English",
+	};
 }
 
 const counterpartLanguage = counterpart

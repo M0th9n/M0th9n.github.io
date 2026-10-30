@@ -22,11 +22,13 @@ async function getRawSortedPosts(includeTranslations = false) {
 		? allBlogPosts
 		: allBlogPosts.filter((entry) => !isTranslation(entry));
 
-	const sorted = visible.sort((a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) => {
-		const dateA = new Date(a.data.published);
-		const dateB = new Date(b.data.published);
-		return dateA > dateB ? -1 : 1;
-	});
+	const sorted = visible.sort(
+		(a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) => {
+			const dateA = new Date(a.data.published);
+			const dateB = new Date(b.data.published);
+			return dateA > dateB ? -1 : 1;
+		},
+	);
 	return sorted;
 }
 
