@@ -1,6 +1,6 @@
 ---
-import path from "node:path";
 import type { CollectionEntry } from "astro:content";
+import path from "node:path";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
@@ -18,7 +18,9 @@ import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 export async function getStaticPaths() {
 	// Includes translations: they are not listed anywhere, but they still need a route.
 	const blogEntries = await getAllSortedPosts();
-	const byStem = new Map(blogEntries.map((entry) => [getPostFileStem(entry), entry]));
+	const byStem = new Map(
+		blogEntries.map((entry) => [getPostFileStem(entry), entry]),
+	);
 	const isTranslationEntry = (entry: CollectionEntry<"posts">) =>
 		!!entry.data.translationOf;
 

@@ -20,7 +20,12 @@ export function isTranslation(entry: CollectionEntry<"posts">) {
  */
 export function getPostFileStem(entry: CollectionEntry<"posts">) {
 	const p = (entry as { filePath?: string }).filePath ?? entry.id;
-	return p.split(/[\\/]/).pop()?.replace(/\.mdx?$/i, "") ?? entry.slug;
+	return (
+		p
+			.split(/[\\/]/)
+			.pop()
+			?.replace(/\.mdx?$/i, "") ?? entry.slug
+	);
 }
 
 // // Retrieve posts and sort them by publication date
