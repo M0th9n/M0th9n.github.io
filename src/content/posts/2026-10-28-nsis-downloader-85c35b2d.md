@@ -215,20 +215,20 @@ NSIS 包内 5 个“数据文件”合计约 1.4 MB，其中 4 个为单一字�
 
 | 证据 ID | 工具 | 摘要 |
 |:--|:--|:--|
-| `ref:d8c0ce8dc6` | PE 结构解析 | PE32 GUI, 5 sections, entry rva 0x34C5, image base 0x400000, 7 imported DLLs, 0 exports |
-| `ref:cb96860fc2` | 导入表解析 | 165 imports / 7 DLLs, imphash 6e7f9a29f2c85394521a08b9f31f6275; no static socket/WinINet imports |
-| `ref:6b2969295f` | scan.entropy | whole-file entropy 7.369; .text 6.495; .rdata 5.014; .data 4.156; .rsrc 5.912 |
-| `ref:4eca17e8b7` | 字符串提取 | ev-000001: 896 ASCII / 51 UTF-16 strings; NSIS integrity messages and no embedded flag/URL |
-| `ref:6cfa65711f` | archive listing (static) | NSIS 3.06 Unicode, deflate, headers 15716 B; extracted file inventory and fake version metadata |
-| `ref:67780c0084` | archive extraction (static) | 6 data files + 3 NSIS plugins + bitmap; per-file sha256 and constant-byte filler statistics |
-| `ref:ae7bba0517` | certificate parsing (static) | self-signed Authenticode cert: CN=Squamify, C=GB, subject==issuer, SHA256, valid 2026-09-08..2027-09-08 |
-| `ref:2bc6cccbca` | 动态分析平台 | real Windows sandbox detonation: 33 polls, pid 6064, 6 detonator dumps, no child process, auto-revert |
-| `ref:f55b194d99` | 字符串提取 | ev-000002: network-monitor log strings, 367 ASCII entries incl. HTTP requests |
-| `ref:9051288944` | log analysis | 11x 'GET /Kp7v.bin' with Host: x0.at, Firefox/157.0 UA, 10 s retry interval |
-| `ref:ddab4c4c7d` | memory forensics | process minidump: UTF-16/ASCII 'hxxps://x0.at/Kp7v.bin' at 0x6CFFC1F/0x6D2B127 and HTTP request headers |
-| `ref:aba1498190` | memory forensics | process minidump: UTF-16 install path under %APPDATA%\Microsoft\Windows\Templates\...\upknit |
-| `ref:dd10aae79a` | module scan | 65 modules in sample process; 1 modified (ntdll patch), 0 injected PE/shellcode |
-| `ref:512e1b78e5` | process enumeration | only sample pid 6064 alive; svchost/监控组件/system otherwise; no spawned child |
+| `ref:d8c0ce8dc6` | PE 结构解析 | PE32 GUI，5 个节区，入口 RVA 0x34C5，镜像基址 0x400000，导入 7 个 DLL，无导出 |
+| `ref:cb96860fc2` | 导入表解析 | 165 个导入 / 7 个 DLL，imphash 6e7f9a29f2c85394521a08b9f31f6275；无静态 socket/WinINet 导入 |
+| `ref:6b2969295f` | scan.entropy | 整文件熵 7.369；.text 6.495；.rdata 5.014；.data 4.156；.rsrc 5.912 |
+| `ref:4eca17e8b7` | 字符串提取 | ev-000001：896 条 ASCII / 51 条 UTF-16 字符串；含 NSIS 完整性校验提示，未嵌入 flag/URL |
+| `ref:6cfa65711f` | archive listing (static) | NSIS 3.06 Unicode、deflate 压缩，头部 15716 B；已提取文件清单与伪造版本信息 |
+| `ref:67780c0084` | archive extraction (static) | 6 个数据文件 + 3 个 NSIS 插件 + 位图；逐文件 sha256 与常量字节填充统计 |
+| `ref:ae7bba0517` | certificate parsing (static) | 自签名 Authenticode 证书：CN=Squamify、C=GB，subject==issuer，SHA256，有效期 2026-09-08..2027-09-08 |
+| `ref:2bc6cccbca` | 动态分析平台 | 真实 Windows 沙箱引爆：33 次轮询，pid 6064，6 次 detonator dump，无子进程，自动回滚 |
+| `ref:f55b194d99` | 字符串提取 | ev-000002：网络监控日志字符串，367 条 ASCII，含 HTTP 请求 |
+| `ref:9051288944` | log analysis | 11 次 'GET /Kp7v.bin'，Host: x0.at，UA 为 Firefox/157.0，重试间隔 10 秒 |
+| `ref:ddab4c4c7d` | memory forensics | 进程 minidump：在 0x6CFFC1F/0x6D2B127 处发现 UTF-16/ASCII 的 'hxxps://x0.at/Kp7v.bin' 及 HTTP 请求头 |
+| `ref:aba1498190` | memory forensics | 进程 minidump：%APPDATA%\Microsoft\Windows\Templates\...\upknit 下的 UTF-16 安装路径 |
+| `ref:dd10aae79a` | module scan | 样本进程内 65 个模块；1 个被修改（ntdll 补丁），0 个注入 PE/shellcode |
+| `ref:512e1b78e5` | process enumeration | 仅样本 pid 6064 存活，其余为 svchost/监控组件/system；未派生任何子进程 |
 | `c2_evidence:85c35b2d` | 连接证据提取 | 动态网络监控记录到 14 次到 x0[.]at:443 的连接尝试；未捕获完整会话 |
 
 </details>
