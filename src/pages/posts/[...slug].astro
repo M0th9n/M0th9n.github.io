@@ -1,11 +1,12 @@
 ---
 import path from "node:path";
+import type { CollectionEntry } from "astro:content";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getAllSortedPosts } from "@utils/content-utils";
+import { getAllSortedPosts, getPostFileStem } from "@utils/content-utils";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
@@ -17,14 +18,30 @@ import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 export async function getStaticPaths() {
 	// Includes translations: they are not listed anywhere, but they still need a route.
 	const blogEntries = await getAllSortedPosts();
-	const bySlug = new Map(blogEntries.map((entry) => [entry.slug, entry]));
+	const byStem = new Map(blogEntries.map((entry) => [getPostFileStem(entry), entry]));
+	const isTranslationEntry = (entry: CollectionEntry<"posts">) =>
+		!!entry.data.translationOf;
 
 	return blogEntries.map((entry) => {
 		// A translation points at its original via `translationOf`; the original finds
-		// its translations by looking for entries that point back at it.
-		const counterpart = entry.data.translationOf
-			? bySlug.get(entry.data.translationOf)
-			: blogEntries.find((other) => other.data.translationOf === entry.slug);
+		// its translations by looking for entries that point back at it. Fall back to
+		// the `<stem>-en` naming convention so a stale `translationOf` cannot hide the
+		// switch.
+		const stem = getPostFileStem(entry);
+		const byNameConvention = () =>
+			blogEntries.find(
+				(other) =>
+					isTranslationEntry(other) &&
+					(other.data.translationOf === stem ||
+						getPostFileStem(other) === `${stem}-en` ||
+						getPostFileStem(other) === stem.replace(/-en$/, "")),
+			);
+		let counterpart = entry.data.translationOf
+			? (byStem.get(entry.data.translationOf) ??
+				byStem.get(stem.replace(/-en$/, "")) ??
+				byNameConvention())
+			: byNameConvention();
+		if (counterpart === entry) counterpart = undefined;
 
 		return {
 			params: { slug: entry.slug },

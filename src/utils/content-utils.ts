@@ -12,6 +12,17 @@ export function isTranslation(entry: CollectionEntry<"posts">) {
 	return !!entry.data.translationOf;
 }
 
+/**
+ * The file name without its extension, preserving case and punctuation that
+ * Astro's slug generation strips (`VNS-Stealer` → `vns-stealer`, `stage2.dll`
+ * → `stage2dll`). `translationOf` stores the name as written, so pairs must be
+ * matched on this rather than on `slug`.
+ */
+export function getPostFileStem(entry: CollectionEntry<"posts">) {
+	const p = (entry as { filePath?: string }).filePath ?? entry.id;
+	return p.split(/[\\/]/).pop()?.replace(/\.mdx?$/i, "") ?? entry.slug;
+}
+
 // // Retrieve posts and sort them by publication date
 async function getRawSortedPosts(includeTranslations = false) {
 	const allBlogPosts = await getCollection("posts", ({ data }) => {

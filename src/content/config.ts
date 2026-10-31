@@ -12,10 +12,12 @@ const postsCollection = defineCollection({
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
 		/**
-		 * Slug of the post this entry translates. Set this only on the translated
-		 * version: the original stays untouched and both directions are resolved
-		 * from it. Translated entries are kept out of listings, archives, tag and
-		 * category counts and the RSS feed, so a report is never counted twice.
+		 * File name (without `.md`) of the post this entry translates. Set this only
+		 * on the translated version: the original stays untouched and both directions
+		 * are resolved from it. Matched against the file name rather than `slug`,
+		 * because Astro's slug lowercases and strips punctuation. Translated entries
+		 * are kept out of listings, archives, tag and category counts and the RSS
+		 * feed, so a report is never counted twice.
 		 */
 		translationOf: z.string().optional(),
 
