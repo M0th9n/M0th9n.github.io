@@ -3,7 +3,7 @@ title: "恶意样本分析：MSF block_api-style shellcode stager（PE · exe ·
 published: 2026-10-30
 draft: false
 description: "恶意（置信度低）：MSF block_api-style shellcode stager · downloader/loader · 难度 easy · 动态沙箱 + 静态反编译"
-tags: ["MSF block_api-style shellcode stager", "downloader", "loader", "PE"]
+tags: ["MSF", "downloader", "loader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

@@ -3,7 +3,7 @@ title: "恶意样本分析：Unidentified stage2 loader (stage2.dll/RunStage2)�
 published: 2026-10-30
 draft: false
 description: "恶意（置信度低）：Unidentified stage2 loader (stage2.dll/RunStage2) · loader/dropper/injector · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["Unidentified stage2 loader", "loader", "dropper", "injector", "PE"]
+tags: ["loader", "dropper", "injector", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

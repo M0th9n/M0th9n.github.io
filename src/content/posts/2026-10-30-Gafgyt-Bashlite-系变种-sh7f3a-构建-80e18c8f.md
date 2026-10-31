@@ -3,7 +3,7 @@ title: "恶意样本分析：Gafgyt/Bashlite 系变种（sh7f3a 构建）（ELF 
 published: 2026-10-30
 draft: false
 description: "恶意（置信度中）：Gafgyt/Bashlite 系变种（sh7f3a 构建） · botnet/backdoor/miner · 难度 hard · 动态沙箱 + 静态反编译"
-tags: ["Gafgyt/Bashlite 系变种", "botnet", "backdoor", "miner", "ELF"]
+tags: ["Gafgyt", "botnet", "backdoor", "miner", "ELF"]
 category: "恶意样本日报"
 lang: "zh"
 ---

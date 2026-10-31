@@ -3,7 +3,7 @@ title: "Malware Analysis: MSF block_api-style shellcode stager (PE · exe · 89d
 published: 2026-10-30
 draft: false
 description: "Malicious (low confidence): MSF block_api-style shellcode stager · downloader/loader · difficulty easy · dynamic sandbox + static decompilation"
-tags: ["MSF block_api-style shellcode stager", "downloader", "loader", "PE"]
+tags: ["MSF", "downloader", "loader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-30-MSF-block_api-style-shellcode-stager-89da6d13"

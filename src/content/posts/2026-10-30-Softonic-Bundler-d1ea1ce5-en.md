@@ -3,7 +3,7 @@ title: "Malware Analysis: Softonic Bundler (PE · exe · d1ea1ce5)"
 published: 2026-10-30
 draft: false
 description: "Grey/PUA (high confidence): Softonic Bundler · pua_bundler/downloader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Softonic Bundler", "pua", "downloader", "PE"]
+tags: ["Softonic", "pua", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-30-Softonic-Bundler-d1ea1ce5"

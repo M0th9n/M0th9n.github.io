@@ -3,7 +3,7 @@ title: "恶意样本分析：EtherHiding-style Python loader (sltnnt[.]ru)（PE 
 published: 2026-10-30
 draft: false
 description: "恶意（置信度低）：EtherHiding-style Python loader (sltnnt[.]ru) · loader/downloader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["EtherHiding-style Python loader", "loader", "downloader", "PE"]
+tags: ["EtherHiding", "loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

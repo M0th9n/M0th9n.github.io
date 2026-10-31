@@ -3,7 +3,7 @@ title: "恶意样本分析：Softonic Bundler（PE · exe · d1ea1ce5）"
 published: 2026-10-30
 draft: false
 description: "灰色/PUA（置信度高）：Softonic Bundler · pua_bundler/downloader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["Softonic Bundler", "pua", "downloader", "PE"]
+tags: ["Softonic", "pua", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

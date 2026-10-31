@@ -3,7 +3,7 @@ title: "Malware Analysis: Salat Stealer (PE · exe · 2c496e41)"
 published: 2026-10-30
 draft: false
 description: "Malicious (medium confidence): Salat Stealer · stealer/rat/downloader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Salat Stealer", "stealer", "rat", "downloader", "PE"]
+tags: ["Salat", "stealer", "rat", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-30-Salat-Stealer-2c496e41"

@@ -3,7 +3,7 @@ title: "Malware Analysis: Unidentified stage2 loader (stage2.dll/RunStage2) (PE 
 published: 2026-10-30
 draft: false
 description: "Malicious (low confidence): Unidentified stage2 loader (stage2.dll/RunStage2) · loader/dropper/injector · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Unidentified stage2 loader", "loader", "dropper", "injector", "PE"]
+tags: ["loader", "dropper", "injector", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-30-Unidentified-stage2-loader-stage2.dll-RunStage2-5761156e"

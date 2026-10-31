@@ -3,7 +3,7 @@ title: "Malware Analysis: EtherHiding-style Python loader (sltnnt[.]ru) (PE · e
 published: 2026-10-30
 draft: false
 description: "Malicious (low confidence): EtherHiding-style Python loader (sltnnt[.]ru) · loader/downloader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["EtherHiding-style Python loader", "loader", "downloader", "PE"]
+tags: ["EtherHiding", "loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-30-EtherHiding-style-Python-loader-sltnnt-.-ru-0b349a5b"

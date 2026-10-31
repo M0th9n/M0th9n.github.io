@@ -3,7 +3,7 @@ title: "Malware Analysis: Gafgyt/Bashlite variant (sh7f3a build) (ELF · elf · 
 published: 2026-10-30
 draft: false
 description: "Malicious (medium confidence): Gafgyt/Bashlite variant (sh7f3a build) · botnet/backdoor/miner · difficulty hard · dynamic sandbox + static decompilation"
-tags: ["Gafgyt/Bashlite 系变种", "botnet", "backdoor", "miner", "ELF"]
+tags: ["Gafgyt", "botnet", "backdoor", "miner", "ELF"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-30-Gafgyt-Bashlite-系变种-sh7f3a-构建-80e18c8f"
