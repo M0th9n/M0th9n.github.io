@@ -3,7 +3,7 @@ title: "恶意样本分析：Unattributed .NET steganographic loader (PureCrypte
 published: 2026-10-31
 draft: false
 description: "恶意（置信度低）：Unattributed .NET steganographic loader (PureCrypter-like) · loader/downloader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["Unattributed .NET", "loader", "downloader", "PE"]
+tags: ["loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

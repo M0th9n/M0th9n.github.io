@@ -3,7 +3,7 @@ title: "恶意样本分析：Unattributed WSF/PowerShell Downloader（other · w
 published: 2026-10-31
 draft: false
 description: "恶意（置信度低）：Unattributed WSF/PowerShell Downloader · downloader/loader · 难度 easy · 纯静态分析"
-tags: ["Unattributed WSF", "downloader", "loader", "Script"]
+tags: ["downloader", "loader", "Script"]
 category: "恶意样本日报"
 lang: "zh"
 ---

@@ -3,7 +3,7 @@ title: "恶意样本分析：Unattributed Go-based stealer/RAT (v0.28.2)（PE ·
 published: 2026-10-31
 draft: false
 description: "恶意（置信度低）：Unattributed Go-based stealer/RAT (v0.28.2) · stealer/rat/backdoor · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["Unattributed Go-based", "stealer", "rat", "backdoor", "PE"]
+tags: ["stealer", "rat", "backdoor", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

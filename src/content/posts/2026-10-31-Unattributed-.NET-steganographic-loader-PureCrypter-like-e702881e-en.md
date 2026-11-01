@@ -3,7 +3,7 @@ title: "Malware Analysis: Unattributed .NET steganographic loader (PureCrypter-l
 published: 2026-10-31
 draft: false
 description: "Malicious (low confidence): Unattributed .NET steganographic loader (PureCrypter-like) · loader/downloader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Unattributed .NET", "loader", "downloader", "PE"]
+tags: ["loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-31-Unattributed-.NET-steganographic-loader-PureCrypter-like-e702881e"

@@ -3,7 +3,7 @@ title: "Malware Analysis: VNS Stealer (PE · exe · ba80f101)"
 published: 2026-10-29
 draft: false
 description: "Malicious (medium confidence): VNS Stealer · stealer/loader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["VNS Stealer", "stealer", "loader", "PE"]
+tags: ["VNS", "stealer", "loader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-29-VNS-Stealer-ba80f101"

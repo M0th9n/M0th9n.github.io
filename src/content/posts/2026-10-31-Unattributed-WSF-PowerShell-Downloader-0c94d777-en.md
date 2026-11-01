@@ -3,7 +3,7 @@ title: "Malware Analysis: Unattributed WSF/PowerShell Downloader (other · wsf �
 published: 2026-10-31
 draft: false
 description: "Malicious (low confidence): Unattributed WSF/PowerShell Downloader · downloader/loader · difficulty easy · pure static analysis"
-tags: ["Unattributed WSF", "downloader", "loader", "Script"]
+tags: ["downloader", "loader", "Script"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-31-Unattributed-WSF-PowerShell-Downloader-0c94d777"

@@ -3,7 +3,7 @@ title: "Malware Analysis: Unattributed Go-based stealer/RAT (v0.28.2) (PE · exe
 published: 2026-10-31
 draft: false
 description: "Malicious (low confidence): Unattributed Go-based stealer/RAT (v0.28.2) · stealer/rat/backdoor · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Unattributed Go-based", "stealer", "rat", "backdoor", "PE"]
+tags: ["stealer", "rat", "backdoor", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-31-Unattributed-Go-based-stealer-RAT-v0.28.2-ba5f005a"
