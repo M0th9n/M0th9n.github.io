@@ -3,7 +3,7 @@ title: "Malware Analysis: Microsoft Windows Biometric Enrollment Host (PE · exe
 published: 2026-11-07
 draft: false
 description: "Benign (high confidence): Microsoft Windows Biometric Enrollment Host · benign · difficulty easy · Dynamic sandbox analysis + static decompilation"
-tags: ["Microsoft Windows", "benign", "PE"]
+tags: ["PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-07-Microsoft-Windows-Biometric-Enrollment-Host-c9ca5797"

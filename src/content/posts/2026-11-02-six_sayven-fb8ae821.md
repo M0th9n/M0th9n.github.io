@@ -3,7 +3,7 @@ title: "恶意样本分析：six_sayven（ELF · elf · fb8ae821）"
 published: 2026-11-02
 draft: false
 description: "恶意（置信度低）：six_sayven · botnet/backdoor · 难度 hard · 动态沙箱 + 静态反编译"
-tags: ["six_sayven", "botnet", "backdoor", "ELF"]
+tags: ["botnet", "backdoor", "ELF"]
 category: "恶意样本日报"
 lang: "zh"
 ---

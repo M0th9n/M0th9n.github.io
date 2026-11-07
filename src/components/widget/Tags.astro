@@ -7,7 +7,11 @@ import { getTagUrl } from "../../utils/url-utils";
 import ButtonTag from "../control/ButtonTag.astro";
 import WidgetLayout from "./WidgetLayout.astro";
 
-const tags = await getTagList();
+const allTags = await getTagList();
+// 家族名是自由文本，每出现一个新家族就多一个标签。只出现一次的标签（大多是
+// 一次性家族名）不进侧边栏，否则标签云会随日报无限膨胀；文章页仍会显示该标签，
+// 按它筛选归档也照常可用。
+const tags = allTags.filter((t) => t.count >= 2);
 
 const COLLAPSED_HEIGHT = "7.5rem";
 

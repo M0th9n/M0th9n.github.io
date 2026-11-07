@@ -3,7 +3,7 @@ title: "恶意样本分析：twitmerklend-loader (unattributed)（PE · exe · a
 published: 2026-10-31
 draft: false
 description: "恶意（置信度低）：twitmerklend-loader (unattributed) · loader/downloader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["twitmerklend", "loader", "downloader", "PE"]
+tags: ["loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

@@ -3,7 +3,7 @@ title: "Malware Analysis: HVNC_SOCKS5 (SanaHeiSayonara) (PE · exe · 6d68d0a9)"
 published: 2026-11-01
 draft: false
 description: "Malicious (medium confidence): HVNC_SOCKS5 (SanaHeiSayonara) · stealer/rat/backdoor · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["HVNC_SOCKS5", "stealer", "rat", "backdoor", "PE"]
+tags: ["stealer", "rat", "backdoor", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-01-HVNC_SOCKS5-SanaHeiSayonara-6d68d0a9"

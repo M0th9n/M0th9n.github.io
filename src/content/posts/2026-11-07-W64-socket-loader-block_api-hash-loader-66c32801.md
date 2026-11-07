@@ -3,7 +3,7 @@ title: "恶意样本分析：W64 socket loader (block_api hash loader)（PE · e
 published: 2026-11-07
 draft: false
 description: "恶意（置信度低）：W64 socket loader (block_api hash loader) · downloader/loader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["W64", "downloader", "loader", "PE"]
+tags: ["downloader", "loader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

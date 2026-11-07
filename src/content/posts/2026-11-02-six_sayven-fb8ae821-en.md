@@ -3,7 +3,7 @@ title: "Malware Analysis: six_sayven (ELF · elf · fb8ae821)"
 published: 2026-11-02
 draft: false
 description: "Malicious (low confidence): six_sayven · botnet/backdoor · difficulty hard · dynamic sandbox + static decompilation"
-tags: ["six_sayven", "botnet", "backdoor", "ELF"]
+tags: ["botnet", "backdoor", "ELF"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-02-six_sayven-fb8ae821"

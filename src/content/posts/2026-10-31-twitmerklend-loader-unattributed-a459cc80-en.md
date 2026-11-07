@@ -3,7 +3,7 @@ title: "Malware Analysis: twitmerklend-loader (unattributed) (PE · exe · a459c
 published: 2026-10-31
 draft: false
 description: "Malicious (low confidence): twitmerklend-loader (unattributed) · loader/downloader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["twitmerklend", "loader", "downloader", "PE"]
+tags: ["loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-10-31-twitmerklend-loader-unattributed-a459cc80"

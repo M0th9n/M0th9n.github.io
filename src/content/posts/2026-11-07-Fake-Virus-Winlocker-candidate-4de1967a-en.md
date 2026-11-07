@@ -3,7 +3,7 @@ title: "Malware Analysis: Fake-Virus Winlocker (candidate) (PE · exe · 4de1967
 published: 2026-11-07
 draft: false
 description: "Malicious (low confidence): Fake-Virus Winlocker (candidate) · ransomware · difficulty hard · Dynamic sandbox analysis + static decompilation"
-tags: ["Fake-Virus Winlocker", "ransomware", "PE"]
+tags: ["ransomware", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-07-Fake-Virus-Winlocker-candidate-4de1967a"

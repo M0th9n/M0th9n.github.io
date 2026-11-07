@@ -3,7 +3,7 @@ title: "恶意样本分析：Microsoft Windows Biometric Enrollment Host（PE ·
 published: 2026-11-07
 draft: false
 description: "良性（置信度高）：Microsoft Windows Biometric Enrollment Host · benign · 难度 easy · 动态沙箱 + 静态反编译"
-tags: ["Microsoft Windows", "benign", "PE"]
+tags: ["PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

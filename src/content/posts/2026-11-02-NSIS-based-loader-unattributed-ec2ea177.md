@@ -3,7 +3,7 @@ title: "恶意样本分析：NSIS-based loader (unattributed)（PE · exe · ec2
 published: 2026-11-02
 draft: false
 description: "恶意（置信度低）：NSIS-based loader (unattributed) · loader/downloader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["NSIS-based", "loader", "downloader", "PE"]
+tags: ["loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

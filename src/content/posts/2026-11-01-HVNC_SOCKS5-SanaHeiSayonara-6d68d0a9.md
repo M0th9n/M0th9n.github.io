@@ -3,7 +3,7 @@ title: "恶意样本分析：HVNC_SOCKS5 (SanaHeiSayonara)（PE · exe · 6d68d0
 published: 2026-11-01
 draft: false
 description: "恶意（置信度中）：HVNC_SOCKS5 (SanaHeiSayonara) · stealer/rat/backdoor · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["HVNC_SOCKS5", "stealer", "rat", "backdoor", "PE"]
+tags: ["stealer", "rat", "backdoor", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

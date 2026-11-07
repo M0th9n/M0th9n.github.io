@@ -3,7 +3,7 @@ title: "Malware Analysis: VBScript PowerShell Downloader (other · vbe · 206cfb
 published: 2026-11-05
 draft: false
 description: "Malicious (medium confidence): VBScript PowerShell Downloader · downloader/loader · difficulty easy · static analysis only"
-tags: ["VBScript", "downloader", "loader"]
+tags: ["downloader", "loader"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-05-VBScript-PowerShell-Downloader-206cfbab"

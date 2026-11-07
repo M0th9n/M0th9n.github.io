@@ -3,7 +3,7 @@ title: "Malware Analysis: Raccoon Stealer v2 (PE · exe · 3bb5bf52)"
 published: 2026-11-02
 draft: false
 description: "Malicious (medium confidence): Raccoon Stealer v2 · stealer/loader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["Raccoon v2", "stealer", "loader", "PE"]
+tags: ["Raccoon", "stealer", "loader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-02-Raccoon-Stealer-v2-3bb5bf52"

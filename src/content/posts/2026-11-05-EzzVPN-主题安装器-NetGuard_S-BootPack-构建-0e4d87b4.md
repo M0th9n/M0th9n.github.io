@@ -3,7 +3,7 @@ title: "恶意样本分析：EzzVPN 主题安装器（NetGuard_S / BootPack 构�
 published: 2026-11-05
 draft: false
 description: "恶意（置信度低）：EzzVPN 主题安装器（NetGuard_S / BootPack 构建） · dropper/pua_bundler · 难度 hard · 动态沙箱 + 静态反编译"
-tags: ["EzzVPN 主题安装器", "dropper", "pua", "PE"]
+tags: ["dropper", "pua", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

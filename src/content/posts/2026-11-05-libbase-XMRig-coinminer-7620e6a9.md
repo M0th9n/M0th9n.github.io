@@ -3,7 +3,7 @@ title: "恶意样本分析：libbase XMRig coinminer（ELF · elf · 7620e6a9）
 published: 2026-11-05
 draft: false
 description: "恶意（置信度中）：libbase XMRig coinminer · miner/backdoor · 难度 medium · 纯静态分析"
-tags: ["libbase XMRig", "miner", "backdoor", "ELF"]
+tags: ["miner", "backdoor", "ELF"]
 category: "恶意样本日报"
 lang: "zh"
 ---

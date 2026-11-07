@@ -3,7 +3,7 @@ title: "Malware Analysis: libbase XMRig coinminer (ELF · elf · 7620e6a9)"
 published: 2026-11-05
 draft: false
 description: "Malicious (medium confidence): libbase XMRig coinminer · miner/backdoor · difficulty medium · static analysis only"
-tags: ["libbase XMRig", "miner", "backdoor", "ELF"]
+tags: ["miner", "backdoor", "ELF"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-05-libbase-XMRig-coinminer-7620e6a9"

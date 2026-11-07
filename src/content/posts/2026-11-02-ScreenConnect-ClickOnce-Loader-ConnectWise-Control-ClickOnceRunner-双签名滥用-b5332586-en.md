@@ -3,7 +3,7 @@ title: "Malware Analysis: ScreenConnect ClickOnce Loader (ConnectWise Control Cl
 published: 2026-11-02
 draft: false
 description: "Malicious (medium confidence): ScreenConnect ClickOnce Loader (ConnectWise Control ClickOnceRunner dual-signature abuse) · loader/downloader/rat · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["ScreenConnect ClickOnce", "loader", "downloader", "rat", "PE"]
+tags: ["ScreenConnect", "loader", "downloader", "rat", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-02-ScreenConnect-ClickOnce-Loader-ConnectWise-Control-ClickOnceRunner-双签名滥用-b5332586"

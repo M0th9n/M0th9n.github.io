@@ -3,7 +3,7 @@ title: "Malware Analysis: W64 socket loader (block_api hash loader) (PE · exe �
 published: 2026-11-07
 draft: false
 description: "Malicious (low confidence): W64 socket loader (block_api hash loader) · downloader/loader · difficulty medium · Dynamic sandbox analysis + static decompilation"
-tags: ["W64", "downloader", "loader", "PE"]
+tags: ["downloader", "loader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-07-W64-socket-loader-block_api-hash-loader-66c32801"

@@ -3,7 +3,7 @@ title: "恶意样本分析：Metasploit Meterpreter stager (x64 reverse_tcp)（P
 published: 2026-11-03
 draft: false
 description: "恶意（置信度中）：Metasploit Meterpreter stager (x64 reverse_tcp) · loader/downloader · 难度 easy · 动态沙箱 + 静态反编译"
-tags: ["Metasploit Meterpreter", "loader", "downloader", "PE"]
+tags: ["Meterpreter", "loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

@@ -3,7 +3,7 @@ title: "恶意样本分析：VBScript PowerShell Downloader（other · vbe · 20
 published: 2026-11-05
 draft: false
 description: "恶意（置信度中）：VBScript PowerShell Downloader · downloader/loader · 难度 easy · 纯静态分析"
-tags: ["VBScript", "downloader", "loader"]
+tags: ["downloader", "loader"]
 category: "恶意样本日报"
 lang: "zh"
 ---

@@ -3,7 +3,7 @@ title: "恶意样本分析：Raccoon Stealer v2（PE · exe · 3bb5bf52）"
 published: 2026-11-02
 draft: false
 description: "恶意（置信度中）：Raccoon Stealer v2 · stealer/loader · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["Raccoon v2", "stealer", "loader", "PE"]
+tags: ["Raccoon", "stealer", "loader", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

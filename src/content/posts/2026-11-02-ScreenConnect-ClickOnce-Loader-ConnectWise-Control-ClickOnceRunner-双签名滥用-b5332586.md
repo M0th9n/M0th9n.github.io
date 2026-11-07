@@ -3,7 +3,7 @@ title: "恶意样本分析：ScreenConnect ClickOnce Loader（ConnectWise Contro
 published: 2026-11-02
 draft: false
 description: "恶意（置信度中）：ScreenConnect ClickOnce Loader（ConnectWise Control ClickOnceRunner 双签名滥用） · loader/downloader/rat · 难度 medium · 动态沙箱 + 静态反编译"
-tags: ["ScreenConnect ClickOnce", "loader", "downloader", "rat", "PE"]
+tags: ["ScreenConnect", "loader", "downloader", "rat", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

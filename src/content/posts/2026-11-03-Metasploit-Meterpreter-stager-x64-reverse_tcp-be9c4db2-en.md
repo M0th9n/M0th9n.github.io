@@ -3,7 +3,7 @@ title: "Malware Analysis: Metasploit Meterpreter stager (x64 reverse_tcp) (PE ·
 published: 2026-11-03
 draft: false
 description: "Malicious (medium confidence): Metasploit Meterpreter stager (x64 reverse_tcp) · loader/downloader · difficulty easy · dynamic sandbox + static decompilation"
-tags: ["Metasploit Meterpreter", "loader", "downloader", "PE"]
+tags: ["Meterpreter", "loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-03-Metasploit-Meterpreter-stager-x64-reverse_tcp-be9c4db2"

@@ -3,7 +3,7 @@ title: "Malware Analysis: NSIS-based loader (unattributed) (PE · exe · ec2ea17
 published: 2026-11-02
 draft: false
 description: "Malicious (low confidence): NSIS-based loader (unattributed) · loader/downloader · difficulty medium · dynamic sandbox + static decompilation"
-tags: ["NSIS-based", "loader", "downloader", "PE"]
+tags: ["loader", "downloader", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-02-NSIS-based-loader-unattributed-ec2ea177"

@@ -3,7 +3,7 @@ title: "恶意样本分析：Fake-Virus Winlocker (candidate)（PE · exe · 4de
 published: 2026-11-07
 draft: false
 description: "恶意（置信度低）：Fake-Virus Winlocker (candidate) · ransomware · 难度 hard · 动态沙箱 + 静态反编译"
-tags: ["Fake-Virus Winlocker", "ransomware", "PE"]
+tags: ["ransomware", "PE"]
 category: "恶意样本日报"
 lang: "zh"
 ---

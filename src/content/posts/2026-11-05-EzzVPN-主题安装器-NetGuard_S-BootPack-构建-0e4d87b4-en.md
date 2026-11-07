@@ -3,7 +3,7 @@ title: "Malware Analysis: EzzVPN-themed installer (NetGuard_S / BootPack build) 
 published: 2026-11-05
 draft: false
 description: "Malicious (low confidence): EzzVPN-themed installer (NetGuard_S / BootPack build) · dropper/pua_bundler · difficulty hard · dynamic sandbox + static decompilation"
-tags: ["EzzVPN 主题安装器", "dropper", "pua", "PE"]
+tags: ["dropper", "pua", "PE"]
 category: "恶意样本日报"
 lang: "en"
 translationOf: "2026-11-05-EzzVPN-主题安装器-NetGuard_S-BootPack-构建-0e4d87b4"
