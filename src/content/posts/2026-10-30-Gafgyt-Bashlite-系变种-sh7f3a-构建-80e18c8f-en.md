@@ -142,7 +142,7 @@ Maintains a list of competing families (mirai, gafgyt, qbot, bashlite, sora, owa
 
 `T1562.001` · Confidence **high** · static
 
-Writes 0.0.0[.]0 mappings inside the # BEGIN-sh7f3a / # END-sh7f3a block of /etc/hosts, blocking avast[.]com, virustotal[.]com, any.run, hybrid-analysis[.]com, urlhaus.abuse.ch and other security vendors and analysis platforms.
+Writes 0.0.0[.]0 mappings inside the # BEGIN-sh7f3a / # END-sh7f3a block of /etc/hosts, blocking avast[.]com, virustotal[.]com, any[.]run, hybrid-analysis[.]com, urlhaus.abuse.ch and other security vendors and analysis platforms.
 
 > **Evidence**: 0x25c8c /etc/hosts, 0x25c98 markers, 0x26360-0x2653c domain list; referenced by 0x40662e
 > 
@@ -258,7 +258,7 @@ Reads TracerPid from /proc/self/status and /proc/self/maps, sets oom_score_adj t
 | `encryption_algo` | `xorshift128 PRNG; also SHA-256 round constants and the TEA golden-ratio constant (use for C2 encryption unconfirmed)` | no | static |
 | `miner_algo` | `cryptonight` | no | static |
 | `install_paths` | `/dev/shm/.sh7f3a;/usr/lib/systemd/.system-helper;/usr/lib/.sh7f3a.so` | no | static |
-| `evasion_hosts` | `avast[.]com;avg[.]com;virustotal[.]com;kaspersky[.]com;bitdefender[.]com;malwarebytes[.]com;any.run;hybrid-analysis[.]com;joesandbox[.]com;urlhaus.abuse.ch;threatcrowd[.]org;otx[.]alienvault[.]com` | no | static |
+| `evasion_hosts` | `avast[.]com;avg[.]com;virustotal[.]com;kaspersky[.]com;bitdefender[.]com;malwarebytes[.]com;any[.]run;hybrid-analysis[.]com;joesandbox[.]com;urlhaus.abuse.ch;threatcrowd[.]org;otx[.]alienvault[.]com` | no | static |
 
 ## Do not misjudge
 

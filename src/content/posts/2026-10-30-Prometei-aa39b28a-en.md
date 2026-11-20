@@ -207,7 +207,7 @@ Invokes the system nslookup with 8.8.8[.]8 to resolve C2 domains, extracting the
 
 | Key | Value | Required | Evidence source |
 |:--|:--|:--|:--|
-| `c2_hosts` | `152.36.128[.]18; gb7ni5rgeexdcncj[.]onion; mkhkjxgchtfgu7uhofxzgoawntfzrkdccymveektqgpxrpjb72oq.b32.i2p` | yes | static |
+| `c2_hosts` | `152.36.128[.]18; gb7ni5rgeexdcncj[.]onion; mkhkjxgchtfgu7uhofxzgoawntfzrkdccymveektqgpxrpjb72oq[.]b32[.]i2p` | yes | static |
 | `c2_uri` | `/cgi-bin/p.cgi?r=0&auth=hash&i=%s&enckey=%s` | yes | static |
 | `install_path` | `/usr/sbin/uplugplay` | yes | static |
 | `bot_id_file` | `/etc/CommId` | yes | static |

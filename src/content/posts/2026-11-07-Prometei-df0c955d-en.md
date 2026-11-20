@@ -80,7 +80,7 @@ At startup the embedded NRV2E loader decompresses 5 compressed blocks into memor
 
 `T1071.001, T1090.003` · Confidence **high** · static
 
-Four hardcoded C2s: cleartext IP 177.221.180[.]26, dummy.zero placeholder domain, a Tor .onion and an I2P b32 address, all pointing to /cgi-bin/*.cgi; the C2 selection function switches to reading local configuration when /etc/pcc0 or ~/.ssh/pcc0 exists.
+Four hardcoded C2s: cleartext IP 177.221.180[.]26, dummy[.]zero placeholder domain, a Tor .onion and an I2P b32 address, all pointing to /cgi-bin/*.cgi; the C2 selection function switches to reading local configuration when /etc/pcc0 or ~/.ssh/pcc0 exists.
 
 > **Evidence**: VA 0x537140/0x537180/0x5371c0/0x537200; FUN_0041a007@0x41a007; in main, 0x427b3d/0x427b5f load the .onion and .i2p addresses respectively
 > 
@@ -217,7 +217,7 @@ It implements the _CMDv2_;%d: task protocol, supporting remote commands such as 
 
 | Key | Value | Required | Evidence source |
 |:--|:--|:--|:--|
-| `c2_hosts` | `hxxp://177.221.180[.]26/cgi-bin/p.cgi; hxxp://dummy.zero/cgi-bin/prometei.cgi; hxxps://gb7ni5rgeexdcncj[.]onion/cgi-bin/prometei.cgi; hxxp://mkhkjxgchtfgu7uhofxzgoawntfzrkdccymveektqgpxrpjb72oq.b32.i2p/cgi-bin/prometei.cgi` | yes | static |
+| `c2_hosts` | `hxxp://177.221.180[.]26/cgi-bin/p.cgi; hxxp://dummy[.]zero/cgi-bin/prometei.cgi; hxxps://gb7ni5rgeexdcncj[.]onion/cgi-bin/prometei.cgi; hxxp://mkhkjxgchtfgu7uhofxzgoawntfzrkdccymveektqgpxrpjb72oq[.]b32[.]i2p/cgi-bin/prometei.cgi` | yes | static |
 | `install_path` | `/usr/sbin/uplugplay` | yes | static |
 | `config_path` | `/etc/uplugplay; /etc/pcc0; /etc/pcc1; /etc/CommId` | no | static |
 | `persistence` | `systemd /lib/systemd/system/uplugplay.service; cron @reboot updatecheckerd` | yes | static |
@@ -251,7 +251,7 @@ The following conclusions are **easy to misinterpret**; please note them when ci
 1. Dynamic detonation did not succeed: the dynamic channel returned guest_rc=0 with no observable behavior/network events, so C2 and persistence behavior are marked as statically recovered and pending dynamic verification.
 2. After unpacking in memory, the sample did not appear to release an independent miner module or second-stage executable; start_mining may be implemented by an internal thread or may depend on a later downloaded module, and the miner program itself was not obtained.
 3. The manually rebuilt unpacked ELF retains the original program headers, but the original section header table is not in the compressed stream (e_shoff points beyond the end of the file), so section-level metadata cannot be recovered.
-4. dummy.zero is more likely a placeholder/template domain, and whether it participates in actual resolution was not dynamically verified; the I2P b32 address cannot be resolved without an I2P environment.
+4. dummy[.]zero is more likely a placeholder/template domain, and whether it participates in actual resolution was not dynamically verified; the I2P b32 address cannot be resolved without an I2P environment.
 5. Family attribution is based on the C2 path literal prometei.cgi, the version string, and TTP consistency; no vendor YARA/multi-engine reports were used for cross-confirmation in this run.
 6. The sandbox network namespace is unreachable by default and no connect/socket events were observed; none of the C2s were actually contacted.
 

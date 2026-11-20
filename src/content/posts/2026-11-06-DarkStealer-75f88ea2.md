@@ -13,7 +13,7 @@ lang: "zh"
 > 
 > 别名：Dark-Stealer、Dark Stealer、@DarkStealer404 build
 > 
-> 样本为 PyInstaller 打包的 Python 信息窃取器。动态沙箱中真实执行后，先后解析并访问 api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com（公网 IP 探测），随后持续解析 api[.]telegram[.]org 并以 Bot API 上传文件，失败后转向 catbox.moe、upload[.]gofile[.]io、0x0.st 备用图床；静态脚本内含 Chrome/Firefox 凭据与 Cookie 解密、App-Bound Encryption 绕过、Discord 令牌与 Telegram 会话目录窃取、钱包扩展数据收集、PowerShell 截图与隐藏 VBS+Run 键持久化、加密货币地址剪贴板替换。
+> 样本为 PyInstaller 打包的 Python 信息窃取器。动态沙箱中真实执行后，先后解析并访问 api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com（公网 IP 探测），随后持续解析 api[.]telegram[.]org 并以 Bot API 上传文件，失败后转向 catbox[.]moe、upload[.]gofile[.]io、0x0[.]st 备用图床；静态脚本内含 Chrome/Firefox 凭据与 Cookie 解密、App-Bound Encryption 绕过、Discord 令牌与 Telegram 会话目录窃取、钱包扩展数据收集、PowerShell 截图与隐藏 VBS+Run 键持久化、加密货币地址剪贴板替换。
 
 ## 速览
 
@@ -163,7 +163,7 @@ Cookies 库直读失败时，以 --remote-debugging-port=9876 --headless=new --u
 
 `T1113` · 置信度 **高** · 静态
 
-用 PowerShell（Add-Type System.Windows.Forms.Drawing + CopyFromScreen）生成 Screenshot.png，与全部窃取文本一起 zip 后按 Telegram→catbox→gofile→0x0.st 顺序回传。
+用 PowerShell（Add-Type System.Windows.Forms.Drawing + CopyFromScreen）生成 Screenshot.png，与全部窃取文本一起 zip 后按 Telegram→catbox→gofile→0x0[.]st 顺序回传。
 
 > **证据**：take_screenshot 的 PS 脚本；create_zip_archive_catbox/upload_to_catbox/upload_to_gofile/upload_to_0x0/send_telegram_document
 > 
@@ -173,9 +173,9 @@ Cookies 库直读失败时，以 --remote-debugging-port=9876 --headless=new --u
 
 `T1567.002` · 置信度 **高** · 动态
 
-以 Bot API sendDocument 上传 zip（caption 带 catbox/gofile/0x0 镜像链接），失败则用 sendMessage 发送链接；动态沙箱中 07:07:37 起反复解析 api[.]telegram[.]org，07:09 起转向 catbox.moe/gofile[.]io/0x0.st。
+以 Bot API sendDocument 上传 zip（caption 带 catbox/gofile/0x0 镜像链接），失败则用 sendMessage 发送链接；动态沙箱中 07:07:37 起反复解析 api[.]telegram[.]org，07:09 起转向 catbox[.]moe/gofile[.]io/0x0[.]st。
 
-> **证据**：TOKEN_BOT/CHAT_ID 与 'hxxps://api[.]telegram[.]org/bot' + '/sendDocument'；动态 DNS 记录 ipify→telegram→catbox→gofile→0x0.st
+> **证据**：TOKEN_BOT/CHAT_ID 与 'hxxps://api[.]telegram[.]org/bot' + '/sendDocument'；动态 DNS 记录 ipify→telegram→catbox→gofile→0x0[.]st
 > 
 > **来源**：`ref:87dad7b966` · `ref:8a81869bf1` · `ref:6e61490618`
 
@@ -237,7 +237,7 @@ PowerShell 死循环每 500ms 读取剪贴板，按正则识别 BTC/ETH/LTC/USDT
 
 | 键 | 值 | 必需 | 证据来源 |
 |:--|:--|:--|:--|
-| `c2_hosts` | `api[.]telegram[.]org（Bot API），备用图床 catbox.moe / gofile[.]io / 0x0.st` | 是 | 静态 |
+| `c2_hosts` | `api[.]telegram[.]org（Bot API），备用图床 catbox[.]moe / gofile[.]io / 0x0[.]st` | 是 | 静态 |
 | `telegram_bot_token` | `8896670610:AAEk0SFei5wIZex0ZYUs4f5-pfzcAmvfpw` | 是 | 静态 |
 | `telegram_chat_id` | `8593010908` | 是 | 静态 |
 | `install_path` | `%LOCALAPPDATA%\Bunny\<timestamp>\` | 否 | 静态 |
@@ -290,10 +290,10 @@ PowerShell 死循环每 500ms 读取剪贴板，按正则识别 BTC/ETH/LTC/USDT
 | `ref:177b341c3e` | PE 结构解析 | PE32+ AMD64 GUI，7 段，entry rva 59248，image 708608，无异常 |
 | `ref:80fe281c4a` | 导入表解析 | 5 个 DLL /150 符号：CreateToolhelp32Snapshot/Process32FirstW、CreateProcessW、GetTokenInformation、VirtualProtect、GetProcAddress |
 | `ref:ea346b8ffc` | script(extract) | 定位 PyInstaller cookie（距文件尾 88 字节，pyver=311，pylib=python311.dll），解出 CArchive 83 个条目及入口脚本 sys_core_a24e56c0(28296462B) |
-| `ref:8a81869bf1` | script(strings) | 入口脚本可读常量：Telegram bot token/chat id、catbox/gofile/0x0.st、App-Bound 解密常量、黑名单列表、钱包扩展 ID 表、内嵌 PowerShell 剪贴板劫持脚本 |
+| `ref:8a81869bf1` | script(strings) | 入口脚本可读常量：Telegram bot token/chat id、catbox/gofile/0x0[.]st、App-Bound 解密常量、黑名单列表、钱包扩展 ID 表、内嵌 PowerShell 剪贴板劫持脚本 |
 | `ref:418a6c8e26` | script(strings) | get_passwords/get_app_bound_key/get_cookie/getKey/get_credit_cards 等函数名与 SQL、DPAPI/NCrypt/ChaCha20-Poly1305 调用串 |
 | `ref:6e61490618` | 动态分析平台 | 真实引爆：pid 7456 启动并产生 6 份内存转储，时间线记录候选进程与回滚状态 |
-| `ref:87dad7b966` | sandbox.watch(log) | 网络监控：07:07:21-33 解析 api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com；07:07:37 起反复 api[.]telegram[.]org；07:09:11-24 catbox.moe/upload[.]gofile[.]io/api[.]gofile[.]io/0x0.st |
+| `ref:87dad7b966` | sandbox.watch(log) | 网络监控：07:07:21-33 解析 api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com；07:07:37 起反复 api[.]telegram[.]org；07:09:11-24 catbox[.]moe/upload[.]gofile[.]io/api[.]gofile[.]io/0x0[.]st |
 | `ref:57180ad96d` | 字符串提取 | 原始 PE 字符串层：仅暴露引导器与资源，无 C2 明文（C2 全在压缩归档内） |
 
 </details>

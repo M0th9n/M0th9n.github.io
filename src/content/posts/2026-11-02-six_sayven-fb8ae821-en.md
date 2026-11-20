@@ -80,7 +80,7 @@ translationOf: "2026-11-02-six_sayven-fb8ae821"
 
 Sends DNS-over-HTTPS requests via HTTPS POST /dns-query (Accept: application/dns-message) to cloudflare-dns[.]com / dns[.]google for bootstrap peer discovery, evading local DNS monitoring.
 
-> **Evidence**: .rodata 0x47de90 'cloudflare-dns[.]com'; 0x47dea4 'dns.google'; 0x47deb8 'POST /dns-query HTTP/1.1'
+> **Evidence**: .rodata 0x47de90 'cloudflare-dns[.]com'; 0x47dea4 'dns[.]google'; 0x47deb8 'POST /dns-query HTTP/1.1'
 > 
 > **Source**: `ev-000001` · `ref:ef87b3bba7`
 

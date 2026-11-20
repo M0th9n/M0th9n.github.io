@@ -173,7 +173,7 @@ lang: "zh"
 
 使用 QUIC/HTTP3 与 WebSocket 作为命令通道，并通过 DoH 解析 C2 域名以规避 DNS 监控。
 
-> **证据**：依赖 quic-go@v0.38.1；字符串 1.1.1[.]1/dns-query、cloudflare-dns[.]com/dns-query、dns.google/resolve、bestConnMethod、http3 DISABLED；动态观测到进程 1768 向 UDP 1.1.1[.]1:443 与 TCP 假网地址:443 反复连接（TCP 443 共 128 次）。
+> **证据**：依赖 quic-go@v0.38.1；字符串 1.1.1[.]1/dns-query、cloudflare-dns[.]com/dns-query、dns[.]google/resolve、bestConnMethod、http3 DISABLED；动态观测到进程 1768 向 UDP 1.1.1[.]1:443 与 TCP 假网地址:443 反复连接（TCP 443 共 128 次）。
 > 
 > **来源**：`ref:21fbc7a749` · `ref:881f995d64` · `ref:9188bc1dfc`
 
@@ -226,7 +226,7 @@ lang: "zh"
 |:--|:--|:--|:--|
 | `version` | `0.28.2 (x86)` | 否 | 静态 |
 | `c2_transport` | `QUIC/HTTP3 + WebSocket (gorilla/websocket)` | 是 | 静态 |
-| `dns_resolvers` | `1.1.1[.]1 / cloudflare-dns[.]com / dns.google (DoH)` | 是 | 静态 |
+| `dns_resolvers` | `1.1.1[.]1 / cloudflare-dns[.]com / dns[.]google (DoH)` | 是 | 静态 |
 | `c2_host` | `unresolved (DoH-resolved at runtime; not recovered)` | 是 | 动态 |
 | `c2_port` | `443` | 否 | 动态 |
 | `persistence` | `Windows Task Scheduler COM (RegisterTaskDefinition)` | 否 | 静态 |
@@ -256,7 +256,7 @@ lang: "zh"
 
 **局限与待验证**
 
-1. 实际 C2 域名未取回：样本优先使用 DoH（1.1.1[.]1 / cloudflare-dns[.]com / dns.google）解析，假网 DNS 无法记录明文查询。
+1. 实际 C2 域名未取回：样本优先使用 DoH（1.1.1[.]1 / cloudflare-dns[.]com / dns[.]google）解析，假网 DNS 无法记录明文查询。
 2. 动态观测中的 192.0.2[.]123:443 是隔离环境的假网应答地址，并非真实 C2，不应作为外部 IOC 使用。
 3. 恢复的载荷来自进程内存取像（已按内存对齐重建），与磁盘原始未加壳文件可能存在节区布局差异；其哈希仅标识该内存映像。
 4. 未观察到计划任务、注册表写入等持久化动作的具体落地记录，持久化能力依据代码/字符串推断，动态未闭环。

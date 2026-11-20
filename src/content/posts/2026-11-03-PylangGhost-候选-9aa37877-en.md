@@ -202,7 +202,7 @@ It uses Winsock to resolve domains and connect to 443, and sends/receives data t
 
 | Key | Value | Required | Evidence source |
 |:--|:--|:--|:--|
-| `c2_hosts` | `polygon-rpc[.]com; 1rpc[.]io/matic; polygon-public.nodies.app; rpc-mainnet.matic.quiknode.pro; polygon-bor-rpc[.]publicnode[.]com; endpoints[.]omniatech[.]io/v1/matic/mainnet/public; api[.]zan[.]top/polygon-mainnet; polygon.rpc.subquery.network/public` | yes | static |
+| `c2_hosts` | `polygon-rpc[.]com; 1rpc[.]io/matic; polygon-public[.]nodies[.]app; rpc-mainnet[.]matic[.]quiknode[.]pro; polygon-bor-rpc[.]publicnode[.]com; endpoints[.]omniatech[.]io/v1/matic/mainnet/public; api[.]zan[.]top/polygon-mainnet; polygon[.]rpc[.]subquery[.]network/public` | yes | static |
 | `eth_contract` | `0x9c0a507300fd902787bb193d80fca5ce6e1bff9a` | yes | static |
 | `download_paths` | `/cdn/5ef451455923 -> requirements.txt; /cdn/e/42a522313d92 -> main.py; /cdn/e/36f2c0035ef9 -> app.pyd (host resolved at runtime)` | yes | static |
 | `install_path` | `%LOCALAPPDATA%\Microsoft\Windows\NtProfileIndex` | yes | static |

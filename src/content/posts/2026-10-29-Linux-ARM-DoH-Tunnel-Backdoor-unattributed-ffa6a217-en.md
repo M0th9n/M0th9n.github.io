@@ -120,7 +120,7 @@ Writes -1000 to /proc/self/oom_score_adj, attempting to reduce the probability o
 
 `T1071.004` · Confidence **high** · Dynamic
 
-Initiates TLS connections to port 443 of public resolvers such as 8.8.8[.]8/1.1.1[.]1/9.9.9[.]9, using domains such as dns.google as Host/SNI, sends POST /dns-query requests, and blends C2 traffic into normal DoH resolution.
+Initiates TLS connections to port 443 of public resolvers such as 8.8.8[.]8/1.1.1[.]1/9.9.9[.]9, using domains such as dns[.]google as Host/SNI, sends POST /dns-query requests, and blends C2 traffic into normal DoH resolution.
 
 > **Evidence**: 0xe478 constructs the DoH request ("POST /dns-query HTTP/1.1" at 0x66a40); dynamic events connect :443 to 8.8.8[.]8, 4.4.8[.]8, 1.1.1[.]1, 1.0.0[.]1, 9.9.9[.]9, and others
 > 

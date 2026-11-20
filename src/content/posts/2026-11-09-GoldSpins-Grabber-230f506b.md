@@ -11,7 +11,7 @@ lang: "zh"
 > [!WARNING]
 > **判定：恶意** · 家族 **GoldSpins Grabber**（存疑） · 置信度 **低**
 > 
-> 静态反编译确认其为一次性内存窃密器：枚举 Chromium/Firefox 凭据与 Cookie、加密钱包、Discord/Telegram/Steam/Roblox 令牌、密码管理器、FTP/VPN 配置并截屏，然后将 ZIP 上传到 hxxps://goldspins[.]club/gate。真实动态环境进一步观测到其释放内置 DLL、启动无头 msedge、DNS 查询 goldspins.club / ip-api[.]com，以及带有 X-Build-ID=582501ca、X-HWID、X-Token 的 97,756 字节 ZIP POST（内含 Screenshot.jpg、FileGrabber/TextFiles、DetectedDomains.txt），因此判定为恶意且证据为运行期自证。
+> 静态反编译确认其为一次性内存窃密器：枚举 Chromium/Firefox 凭据与 Cookie、加密钱包、Discord/Telegram/Steam/Roblox 令牌、密码管理器、FTP/VPN 配置并截屏，然后将 ZIP 上传到 hxxps://goldspins[.]club/gate。真实动态环境进一步观测到其释放内置 DLL、启动无头 msedge、DNS 查询 goldspins[.]club / ip-api[.]com，以及带有 X-Build-ID=582501ca、X-HWID、X-Token 的 97,756 字节 ZIP POST（内含 Screenshot.jpg、FileGrabber/TextFiles、DetectedDomains.txt），因此判定为恶意且证据为运行期自证。
 
 ## 速览
 
@@ -269,7 +269,7 @@ lang: "zh"
 | `ev-000037` | decompile.ghidra | FUN_140007160 哈希常量解析 API |
 | `ref:3cadef3374` | pe.exports | payload_v3.dll 导出 elevator_init/decrypt_key 等 |
 | `ref:f9c2607a4b` | dyn.run | 仿真观测到 API 哈希解析、HKLM 反虚拟机查询与 Grabber 横幅 |
-| `ref:f19ab4471d` | 动态分析平台 | 真实动态：释放 Temp DLL、启动无头 msedge、DNS 查询 goldspins.club/ip-api[.]com、POST /gate 上传 ZIP |
+| `ref:f19ab4471d` | 动态分析平台 | 真实动态：释放 Temp DLL、启动无头 msedge、DNS 查询 goldspins[.]club/ip-api[.]com、POST /gate 上传 ZIP |
 | `c2_evidence:230f506b` | 连接证据提取 | 动态网络监控记录到 1 次到 goldspins[.]club:443 的连接尝试；未捕获完整会话 |
 | `telemetry:230f506b` | 动态遥测 | 动态遥测记录到：监控组件 注册表事件 1 条；监控组件 进程/文件事件 116 条；ETW 短命进程事件 1 条；已过滤工具/系统噪声 26 条 |
 | `etw:230f506b:5800` | 进程事件监控 | 短命进程事件：230f506bb813f4950bba612d0804ce34a1fee8bf24e8d068ac9a34979f0a835b.exe（pid 5800；MD5=043AEA82EA3D8CF809FFF5A7801814AD,SHA256=230F506BB813F4950BBA612D0804CE34A1FEE8BF24E8D068AC9A34979F0A835B,IMPHASH=3F8E2AB76B7440ED45BE9591BF586EBE） |

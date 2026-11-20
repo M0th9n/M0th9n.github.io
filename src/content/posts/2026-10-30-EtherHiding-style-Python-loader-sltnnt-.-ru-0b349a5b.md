@@ -213,7 +213,7 @@ FUN_00407a78 组装 "-k -s -X PUT -H ... -o <本地文件> <URL>" 形式的外�
 |:--|:--|:--|:--|
 | `c2_hosts` | `sltnnt[.]ru` | 是 | 静态 |
 | `c2_paths` | `/cdn/5ef451455923 (requirements.txt); /cdn/e/42a522313d92 (main.py); /cdn/e/36f2c0035ef9 (app.pyd)` | 是 | 静态 |
-| `blockchain_rpc_endpoints` | `8 个 Polygon JSON-RPC 端点: polygon-rpc[.]com / rpc-mainnet.matic.quiknode.pro / polygon-public.nodies.app / 1rpc[.]io/matic / polygon-bor-rpc[.]publicnode[.]com / api[.]zan[.]top / polygon.rpc.subquery.network / endpoints[.]omniatech[.]io` | 是 | 静态 |
+| `blockchain_rpc_endpoints` | `8 个 Polygon JSON-RPC 端点: polygon-rpc[.]com / rpc-mainnet[.]matic[.]quiknode[.]pro / polygon-public[.]nodies[.]app / 1rpc[.]io/matic / polygon-bor-rpc[.]publicnode[.]com / api[.]zan[.]top / polygon[.]rpc[.]subquery[.]network / endpoints[.]omniatech[.]io` | 是 | 静态 |
 | `smart_contract` | `0x9c0a507300fd902787bb193d80fca5ce6e1bff9a (eth_call selector 0xce6d41de, 配置死信箱)` | 是 | 静态 |
 | `install_path` | `%LOCALAPPDATA%\Microsoft\Windows\NtProfileIndex` | 是 | 静态 |
 | `payload_argv` | `python.exe main.py --host <c2> --env <env> (mode: install / AppHost)` | 是 | 静态 |

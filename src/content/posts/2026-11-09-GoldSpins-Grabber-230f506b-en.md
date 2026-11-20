@@ -12,7 +12,7 @@ translationOf: "2026-11-09-GoldSpins-Grabber-230f506b"
 > [!WARNING]
 > **Verdict: Malicious** · Family **GoldSpins Grabber** (uncertain) · Confidence **low**
 > 
-> Static decompilation confirms it is a one-shot in-memory credential stealer: it enumerates Chromium/Firefox credentials and cookies, crypto wallets, Discord/Telegram/Steam/Roblox tokens, password managers and FTP/VPN configuration, takes a screenshot, then uploads a ZIP to hxxps://goldspins[.]club/gate. The real dynamic environment further observed it dropping a built-in DLL, launching headless msedge, DNS queries for goldspins.club / ip-api[.]com, and a 97,756-byte ZIP POST carrying X-Build-ID=582501ca, X-HWID and X-Token headers (containing Screenshot.jpg, FileGrabber/TextFiles and DetectedDomains.txt), so it is judged malicious with runtime self-evidence.
+> Static decompilation confirms it is a one-shot in-memory credential stealer: it enumerates Chromium/Firefox credentials and cookies, crypto wallets, Discord/Telegram/Steam/Roblox tokens, password managers and FTP/VPN configuration, takes a screenshot, then uploads a ZIP to hxxps://goldspins[.]club/gate. The real dynamic environment further observed it dropping a built-in DLL, launching headless msedge, DNS queries for goldspins[.]club / ip-api[.]com, and a 97,756-byte ZIP POST carrying X-Build-ID=582501ca, X-HWID and X-Token headers (containing Screenshot.jpg, FileGrabber/TextFiles and DetectedDomains.txt), so it is judged malicious with runtime self-evidence.
 
 ## Overview
 
@@ -270,7 +270,7 @@ The following conclusions are **easy to misjudge**; keep them in mind when citin
 | `ev-000037` | decompile.ghidra | FUN_140007160 hash-constant API resolution |
 | `ref:3cadef3374` | pe.exports | payload_v3.dll exports elevator_init/decrypt_key etc. |
 | `ref:f9c2607a4b` | dyn.run | emulation observed API hash resolution, HKLM anti-VM queries and Grabber banner |
-| `ref:f19ab4471d` | dynamic analysis platform | real dynamic: drops Temp DLL, launches headless msedge, DNS queries goldspins.club/ip-api[.]com, POST /gate uploads ZIP |
+| `ref:f19ab4471d` | dynamic analysis platform | real dynamic: drops Temp DLL, launches headless msedge, DNS queries goldspins[.]club/ip-api[.]com, POST /gate uploads ZIP |
 | `c2_evidence:230f506b` | connection evidence extraction | dynamic network monitoring recorded 1 connection attempt to goldspins[.]club:443; no complete session captured |
 | `telemetry:230f506b` | dynamic telemetry | dynamic telemetry recorded: monitoring component registry events 1; monitoring component process/file events 116; ETW short-lived process events 1; tool/system noise filtered 26 |
 | `etw:230f506b:5800` | process event monitoring | short-lived process event: 230f506bb813f4950bba612d0804ce34a1fee8bf24e8d068ac9a34979f0a835b.exe (pid 5800; MD5=043AEA82EA3D8CF809FFF5A7801814AD,SHA256=230F506BB813F4950BBA612D0804CE34A1FEE8BF24E8D068AC9A34979F0A835B,IMPHASH=3F8E2AB76B7440ED45BE9591BF586EBE) |

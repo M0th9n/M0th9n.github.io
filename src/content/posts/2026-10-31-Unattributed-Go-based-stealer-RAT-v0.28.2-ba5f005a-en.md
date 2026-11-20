@@ -174,7 +174,7 @@ Adjusts process privileges and duplicates/abuses access tokens so that it can re
 
 Uses QUIC/HTTP3 and WebSocket as the command channel and resolves the C2 domain over DoH to evade DNS monitoring.
 
-> **Evidence**: dependency quic-go@v0.38.1; strings 1.1.1[.]1/dns-query, cloudflare-dns[.]com/dns-query, dns.google/resolve, bestConnMethod, http3 DISABLED; dynamically observed process 1768 repeatedly connecting to UDP 1.1.1[.]1:443 and TCP simulated-network address:443 (128 TCP 443 connections in total).
+> **Evidence**: dependency quic-go@v0.38.1; strings 1.1.1[.]1/dns-query, cloudflare-dns[.]com/dns-query, dns[.]google/resolve, bestConnMethod, http3 DISABLED; dynamically observed process 1768 repeatedly connecting to UDP 1.1.1[.]1:443 and TCP simulated-network address:443 (128 TCP 443 connections in total).
 > 
 > **Source**: `ref:21fbc7a749` · `ref:881f995d64` · `ref:9188bc1dfc`
 
@@ -227,7 +227,7 @@ The payload embeds two WebAssembly modules that are interpreted at runtime by wa
 |:--|:--|:--|:--|
 | `version` | `0.28.2 (x86)` | no | static |
 | `c2_transport` | `QUIC/HTTP3 + WebSocket (gorilla/websocket)` | yes | static |
-| `dns_resolvers` | `1.1.1[.]1 / cloudflare-dns[.]com / dns.google (DoH)` | yes | static |
+| `dns_resolvers` | `1.1.1[.]1 / cloudflare-dns[.]com / dns[.]google (DoH)` | yes | static |
 | `c2_host` | `unresolved (DoH-resolved at runtime; not recovered)` | yes | dynamic |
 | `c2_port` | `443` | no | dynamic |
 | `persistence` | `Windows Task Scheduler COM (RegisterTaskDefinition)` | no | static |
@@ -257,7 +257,7 @@ The following conclusions are **easy to get wrong**; keep them in mind when citi
 
 **Limitations and open questions**
 
-1. The actual C2 domain was not recovered: the sample resolves preferentially over DoH (1.1.1[.]1 / cloudflare-dns[.]com / dns.google), and the simulated-network DNS cannot record plaintext queries.
+1. The actual C2 domain was not recovered: the sample resolves preferentially over DoH (1.1.1[.]1 / cloudflare-dns[.]com / dns[.]google), and the simulated-network DNS cannot record plaintext queries.
 2. The 192.0.2[.]123:443 seen in the dynamic observations is the simulated-network reply address of the isolated environment, not the real C2, and must not be used as an external IOC.
 3. The recovered payload comes from a process memory image (rebuilt according to memory alignment) and may differ in section layout from the original packed file on disk; its hash identifies that memory image only.
 4. No concrete records of persistence actions such as scheduled tasks or registry writes were observed; the persistence capability is inferred from code/strings and was not closed out dynamically.

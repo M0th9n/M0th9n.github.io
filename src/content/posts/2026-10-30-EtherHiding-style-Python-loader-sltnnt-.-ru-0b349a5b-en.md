@@ -214,7 +214,7 @@ In the dynamic sandbox the first process (pid 4436) started, and about one secon
 |:--|:--|:--|:--|
 | `c2_hosts` | `sltnnt[.]ru` | yes | static |
 | `c2_paths` | `/cdn/5ef451455923 (requirements.txt); /cdn/e/42a522313d92 (main.py); /cdn/e/36f2c0035ef9 (app.pyd)` | yes | static |
-| `blockchain_rpc_endpoints` | `8 Polygon JSON-RPC endpoints: polygon-rpc[.]com / rpc-mainnet.matic.quiknode.pro / polygon-public.nodies.app / 1rpc[.]io/matic / polygon-bor-rpc[.]publicnode[.]com / api[.]zan[.]top / polygon.rpc.subquery.network / endpoints[.]omniatech[.]io` | yes | static |
+| `blockchain_rpc_endpoints` | `8 Polygon JSON-RPC endpoints: polygon-rpc[.]com / rpc-mainnet[.]matic[.]quiknode[.]pro / polygon-public[.]nodies[.]app / 1rpc[.]io/matic / polygon-bor-rpc[.]publicnode[.]com / api[.]zan[.]top / polygon[.]rpc[.]subquery[.]network / endpoints[.]omniatech[.]io` | yes | static |
 | `smart_contract` | `0x9c0a507300fd902787bb193d80fca5ce6e1bff9a (eth_call selector 0xce6d41de, config dead drop)` | yes | static |
 | `install_path` | `%LOCALAPPDATA%\Microsoft\Windows\NtProfileIndex` | yes | static |
 | `payload_argv` | `python.exe main.py --host <c2> --env <env> (mode: install / AppHost)` | yes | static |

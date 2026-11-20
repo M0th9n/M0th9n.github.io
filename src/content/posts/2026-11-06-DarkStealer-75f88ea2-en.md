@@ -14,7 +14,7 @@ translationOf: "2026-11-06-DarkStealer-75f88ea2"
 > 
 > Aliases: Dark-Stealer, Dark Stealer, @DarkStealer404 build
 > 
-> The sample is a PyInstaller-packed Python infostealer. After real execution in the dynamic sandbox it resolves and contacts api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com in turn (public-IP discovery), then repeatedly resolves api[.]telegram[.]org and uploads files via the Bot API, falling back to catbox.moe, upload[.]gofile[.]io and 0x0.st when that fails; the static script contains Chrome/Firefox credential and cookie decryption, App-Bound Encryption bypass, Discord token and Telegram session-directory theft, wallet extension data collection, PowerShell screenshots with hidden VBS+Run-key persistence, and cryptocurrency address clipboard replacement.
+> The sample is a PyInstaller-packed Python infostealer. After real execution in the dynamic sandbox it resolves and contacts api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com in turn (public-IP discovery), then repeatedly resolves api[.]telegram[.]org and uploads files via the Bot API, falling back to catbox[.]moe, upload[.]gofile[.]io and 0x0[.]st when that fails; the static script contains Chrome/Firefox credential and cookie decryption, App-Bound Encryption bypass, Discord token and Telegram session-directory theft, wallet extension data collection, PowerShell screenshots with hidden VBS+Run-key persistence, and cryptocurrency address clipboard replacement.
 
 ## Overview
 
@@ -164,7 +164,7 @@ It searches Desktop/Documents/Downloads for files by keywords (wallet/mnemonic/s
 
 `T1113` · Confidence **high** · static
 
-It uses PowerShell (Add-Type System.Windows.Forms.Drawing + CopyFromScreen) to produce Screenshot.png, zips it together with all stolen text and sends it back in the order Telegram→catbox→gofile→0x0.st.
+It uses PowerShell (Add-Type System.Windows.Forms.Drawing + CopyFromScreen) to produce Screenshot.png, zips it together with all stolen text and sends it back in the order Telegram→catbox→gofile→0x0[.]st.
 
 > **Evidence**: take_screenshot's PS script; create_zip_archive_catbox/upload_to_catbox/upload_to_gofile/upload_to_0x0/send_telegram_document
 > 
@@ -174,9 +174,9 @@ It uses PowerShell (Add-Type System.Windows.Forms.Drawing + CopyFromScreen) to p
 
 `T1567.002` · Confidence **high** · dynamic
 
-It uploads the zip via Bot API sendDocument (with a caption carrying catbox/gofile/0x0 mirror links), falling back to sendMessage for links; in the dynamic sandbox it repeatedly resolved api[.]telegram[.]org from 07:07:37 and switched to catbox.moe/gofile[.]io/0x0.st from 07:09.
+It uploads the zip via Bot API sendDocument (with a caption carrying catbox/gofile/0x0 mirror links), falling back to sendMessage for links; in the dynamic sandbox it repeatedly resolved api[.]telegram[.]org from 07:07:37 and switched to catbox[.]moe/gofile[.]io/0x0[.]st from 07:09.
 
-> **Evidence**: TOKEN_BOT/CHAT_ID and 'hxxps://api[.]telegram[.]org/bot' + '/sendDocument'; dynamic DNS records ipify→telegram→catbox→gofile→0x0.st
+> **Evidence**: TOKEN_BOT/CHAT_ID and 'hxxps://api[.]telegram[.]org/bot' + '/sendDocument'; dynamic DNS records ipify→telegram→catbox→gofile→0x0[.]st
 > 
 > **Source**: `ref:87dad7b966` · `ref:8a81869bf1` · `ref:6e61490618`
 
@@ -238,7 +238,7 @@ A PowerShell infinite loop reads the clipboard every 500 ms, matches BTC/ETH/LTC
 
 | Key | Value | Required | Evidence source |
 |:--|:--|:--|:--|
-| `c2_hosts` | `api[.]telegram[.]org (Bot API), fallback image hosts catbox.moe / gofile[.]io / 0x0.st` | yes | static |
+| `c2_hosts` | `api[.]telegram[.]org (Bot API), fallback image hosts catbox[.]moe / gofile[.]io / 0x0[.]st` | yes | static |
 | `telegram_bot_token` | `8896670610:AAEk0SFei5wIZex0ZYUs4f5-pfzcAmvfpw` | yes | static |
 | `telegram_chat_id` | `8593010908` | yes | static |
 | `install_path` | `%LOCALAPPDATA%\Bunny\<timestamp>\` | no | static |
@@ -291,10 +291,10 @@ The following conclusions are **easy to misjudge**; keep them in mind when citin
 | `ref:177b341c3e` | PE structure parsing | PE32+ AMD64 GUI, 7 sections, entry rva 59248, image 708608, no anomalies |
 | `ref:80fe281c4a` | import table parsing | 5 DLLs/150 symbols: CreateToolhelp32Snapshot/Process32FirstW, CreateProcessW, GetTokenInformation, VirtualProtect, GetProcAddress |
 | `ref:ea346b8ffc` | script(extract) | located the PyInstaller cookie (88 bytes from EOF, pyver=311, pylib=python311.dll), unpacked 83 CArchive entries and the entry script sys_core_a24e56c0 (28296462B) |
-| `ref:8a81869bf1` | script(strings) | readable constants of the entry script: Telegram bot token/chat id, catbox/gofile/0x0.st, App-Bound decryption constants, blacklists, wallet extension ID table, embedded PowerShell clipboard-hijack script |
+| `ref:8a81869bf1` | script(strings) | readable constants of the entry script: Telegram bot token/chat id, catbox/gofile/0x0[.]st, App-Bound decryption constants, blacklists, wallet extension ID table, embedded PowerShell clipboard-hijack script |
 | `ref:418a6c8e26` | script(strings) | function names and SQL, DPAPI/NCrypt/ChaCha20-Poly1305 call strings for get_passwords/get_app_bound_key/get_cookie/getKey/get_credit_cards etc. |
 | `ref:6e61490618` | dynamic analysis platform | real detonation: pid 7456 started and produced 6 memory dumps; timeline records candidate processes and rollback status |
-| `ref:87dad7b966` | sandbox.watch(log) | network monitoring: 07:07:21-33 resolves api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com; from 07:07:37 repeatedly api[.]telegram[.]org; 07:09:11-24 catbox.moe/upload[.]gofile[.]io/api[.]gofile[.]io/0x0.st |
+| `ref:87dad7b966` | sandbox.watch(log) | network monitoring: 07:07:21-33 resolves api[.]ipify[.]org/httpbin[.]org/api[.]myip[.]com; from 07:07:37 repeatedly api[.]telegram[.]org; 07:09:11-24 catbox[.]moe/upload[.]gofile[.]io/api[.]gofile[.]io/0x0[.]st |
 | `ref:57180ad96d` | string extraction | raw PE string layer: exposes only the bootstrapper and resources, no plaintext C2 (all C2 is inside the compressed archive) |
 
 </details>

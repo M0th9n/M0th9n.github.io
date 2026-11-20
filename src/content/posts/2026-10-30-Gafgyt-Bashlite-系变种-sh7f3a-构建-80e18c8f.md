@@ -141,7 +141,7 @@ lang: "zh"
 
 `T1562.001` · 置信度 **高** · 静态
 
-在 /etc/hosts 的 # BEGIN-sh7f3a / # END-sh7f3a 标记块内写入 0.0.0[.]0 映射，屏蔽 avast[.]com、virustotal[.]com、any.run、hybrid-analysis[.]com、urlhaus.abuse.ch 等安全厂商与分析平台。
+在 /etc/hosts 的 # BEGIN-sh7f3a / # END-sh7f3a 标记块内写入 0.0.0[.]0 映射，屏蔽 avast[.]com、virustotal[.]com、any[.]run、hybrid-analysis[.]com、urlhaus.abuse.ch 等安全厂商与分析平台。
 
 > **证据**：0x25c8c /etc/hosts、0x25c98 标记、0x26360-0x2653c 域名列表；0x40662e 引用
 > 
@@ -257,7 +257,7 @@ lang: "zh"
 | `encryption_algo` | `xorshift128 伪随机数发生器；另含 SHA-256 轮常量与 TEA 黄金比常量（用于 C2 加密未证实）` | 否 | 静态 |
 | `miner_algo` | `cryptonight` | 否 | 静态 |
 | `install_paths` | `/dev/shm/.sh7f3a;/usr/lib/systemd/.system-helper;/usr/lib/.sh7f3a.so` | 否 | 静态 |
-| `evasion_hosts` | `avast[.]com;avg[.]com;virustotal[.]com;kaspersky[.]com;bitdefender[.]com;malwarebytes[.]com;any.run;hybrid-analysis[.]com;joesandbox[.]com;urlhaus.abuse.ch;threatcrowd[.]org;otx[.]alienvault[.]com` | 否 | 静态 |
+| `evasion_hosts` | `avast[.]com;avg[.]com;virustotal[.]com;kaspersky[.]com;bitdefender[.]com;malwarebytes[.]com;any[.]run;hybrid-analysis[.]com;joesandbox[.]com;urlhaus.abuse.ch;threatcrowd[.]org;otx[.]alienvault[.]com` | 否 | 静态 |
 
 ## 不应误判
 

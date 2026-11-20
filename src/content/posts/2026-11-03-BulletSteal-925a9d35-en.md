@@ -78,7 +78,7 @@ translationOf: "2026-11-03-BulletSteal-925a9d35"
 
 It resolves jujupuluz[.]icu to its 1010/TCP address and connects; it sends a 20-byte handshake (16-byte fixed magic ':a1+L{yWL920K7=' + 4-byte bot identifier) and validates a 16-byte magic in the reply; after disconnection it reconnects every 240 seconds.
 
-> **Evidence**: 0x1400106d0 getaddrinfo/socket/connect + send(0x14)/recv(0x10) magic comparison; 0x1400013ed loads jujupuluz.icu; 0x140013900 Sleep(240000) reconnect loop; dynamic: DNS jujupuluz[.]icu and 20-byte randomized payload on TCP 1010
+> **Evidence**: 0x1400106d0 getaddrinfo/socket/connect + send(0x14)/recv(0x10) magic comparison; 0x1400013ed loads jujupuluz[.]icu; 0x140013900 Sleep(240000) reconnect loop; dynamic: DNS jujupuluz[.]icu and 20-byte randomized payload on TCP 1010
 > 
 > **Source**: `ev-000018` · `ev-000015` · `ev-000016` · `ref:5dcffbd8ff`
 
@@ -283,7 +283,7 @@ The following conclusions are **prone to misjudgment**; take care when citing th
 | `ref:69b55c7f0b` | pe.exports | export DLL name HVNC_SOCKS5.exe, 78 exports (cJSON) |
 | `ref:fa60173f28` | import table parsing | 21 DLLs/364 symbols: WS2_32, WinHTTP, GDI/GDI+, MF, CRYPT32, bcrypt, ncrypt, USER32 hooks/desktop/clipboard |
 | `ev-000014` | string extraction | 6066 ASCII/522 UTF-16 strings (browser SQL, wallet paths, Krutyak.zip, usbmmidd, Add-MpPreference, etc.) |
-| `ev-000015` | decompile.function | FUN_140001190 main flow: WSAStartup, OpenInputDesktop, GetUserNameW/GetComputerNameExW, loading jujupuluz.icu and Steam path |
+| `ev-000015` | decompile.function | FUN_140001190 main flow: WSAStartup, OpenInputDesktop, GetUserNameW/GetComputerNameExW, loading jujupuluz[.]icu and Steam path |
 | `ev-000016` | decompile.function | FUN_140013900 240-second reconnect loop |
 | `ev-000017` | decompile.function | FUN_140014360 creates/opens hidden desktop (A/U suffix) |
 | `ev-000018` | decompile.function | FUN_1400106d0 getaddrinfo(1010)/socket/connect + 20-byte handshake and 16-byte magic validation |

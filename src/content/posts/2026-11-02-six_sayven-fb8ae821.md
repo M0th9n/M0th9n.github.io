@@ -79,7 +79,7 @@ lang: "zh"
 
 通过 HTTPS 向 cloudflare-dns[.]com / dns[.]google 发送 POST /dns-query（Accept: application/dns-message）的 DNS-over-HTTPS 请求，用于引导节点发现，绕过本地 DNS 监控。
 
-> **证据**：.rodata 0x47de90 'cloudflare-dns[.]com'; 0x47dea4 'dns.google'; 0x47deb8 'POST /dns-query HTTP/1.1'
+> **证据**：.rodata 0x47de90 'cloudflare-dns[.]com'; 0x47dea4 'dns[.]google'; 0x47deb8 'POST /dns-query HTTP/1.1'
 > 
 > **来源**：`ev-000001` · `ref:ef87b3bba7`
 
