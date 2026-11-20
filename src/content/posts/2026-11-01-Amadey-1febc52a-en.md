@@ -157,13 +157,17 @@ Presets the command template cmd.exe /c start "" "<path>.exe" "%APPDATA%" to sta
 
 ### Network
 
+:::note
+**Observed dynamic connections**: the sample actually initiated TCP connections to this target (multiple retries within a short window).
+:::
+
 :::caution
-**Pending dynamic verification**: the addresses above were obtained statically; no successful connection or session was observed under the analysis environment's network isolation, and the real C2's responses and delivered content remain unknown.
+**The real server side remains unverified**: the connections above were completed against a local controlled emulation service; the real C2 responses and delivered content are still unknown.
 :::
 
 | Type | Value | Port | Role | Evidence source | Dynamic observation |
 |:--|:--|--:|:--|:--|:--|
-| http | `hxxp://107[.]175[.]82[.]242:9000/wilow/lososo.exe` | 9000 | download | Static | ⏳ Not observed |
+| http | `hxxp://107[.]175[.]82[.]242:9000/wilow/lososo.exe` | 9000 | download | Dynamic | Observed |
 
 ### Host
 
@@ -221,7 +225,7 @@ The following conclusions are **easy to misjudge**; keep this in mind when citin
 ## Evidence index
 
 <details>
-<summary>Expand 18 tool evidence entries</summary>
+<summary>Expand 19 tool evidence entries</summary>
 
 | Evidence ID | Tool | Summary |
 |:--|:--|:--|
@@ -243,6 +247,7 @@ The following conclusions are **easy to misjudge**; keep this in mind when citin
 | `ref:1ece069161` | asn1.parse | Parsed the security directory PKCS#7: O=Oracle Corporation, CN=Background Transfer, self-signed validity period |
 | `ref:479b9fc8be` | asn1.parse | Certificate ASN.1 structure: sha256WithRSA, serial number 37C550C04C591A7F9452A012CD47ECCD20C1D86D |
 | `ref:f231bcf6a3` | string-scan | Family string search found no clear family identifier; only false hits such as PNG IDAT, supporting a candidate family designation |
+| `c2_evidence:1febc52a` | Connection evidence extraction | Dynamic network monitoring recorded 3 connection attempts to 107.175.82[.]242:9000; no complete session captured |
 
 </details>
 

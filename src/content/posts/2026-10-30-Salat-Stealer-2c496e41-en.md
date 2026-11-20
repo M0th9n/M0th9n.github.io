@@ -193,13 +193,17 @@ On receiving an uninstall command it starts cmd/powershell to delete its own fil
 
 ### Network
 
+:::note
+**Observed dynamic connections**: the sample actually initiated TCP connections to this target (multiple retries within a short window).
+:::
+
 :::caution
 **The real server side remains unverified**: the connections above were completed against a local controlled emulation service; the real C2 responses and delivered content are still unknown.
 :::
 
 | Type | Value | Port | Role | Evidence source | Dynamic observation |
 |:--|:--|--:|:--|:--|:--|
-| tcp | `45.61.177[.]70` | 7777 | c2 | static | ⏳ not observed |
+| tcp | `45.61.177[.]70` | 7777 | c2 | dynamic | observed |
 
 ### Host
 
@@ -259,7 +263,7 @@ The following conclusions are **easy to misjudge**; keep them in mind when citin
 ## Evidence index
 
 <details>
-<summary>Expand 7 tool evidence items</summary>
+<summary>Expand 8 tool evidence items</summary>
 
 | Evidence ID | Tool | Summary |
 |:--|:--|:--|
@@ -270,6 +274,7 @@ The following conclusions are **easy to misjudge**; keep them in mind when citin
 | `ref:77875dffd2` | PE structure parser | AMD64 PE, 8 sections, entry RVA 0x87DC0, no packing anomalies, only kernel32 imported |
 | `ref:0ee4513f32` | Import table parser | Only 48 kernel32.dll imports (VirtualAlloc/Thread context/CreateThread etc.), the typical Go runtime import surface |
 | `ref:dc119569d1` | Sample triage | Entropy and section table normal (.text 6.22), packing.score=0, anomaly_count=0 |
+| `c2_evidence:2c496e41` | Connection evidence extraction | Dynamic network monitoring recorded 3 connection attempts to 45.61.177[.]70:7777; no complete session captured |
 
 </details>
 
